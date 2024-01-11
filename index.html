@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Content of the Day</title>
+    <title>Words and Rep</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-    <h1>Today</h1>
+    <h1>Random Content of the Day</h1>
 
     <!-- Word and Definition Container -->
     <div id="word-container">
@@ -128,15 +128,15 @@
         // Function to display a random standard song
         function displayRandomStandard() {
             const currentStandardIndex = parseInt(getCookie('standardIndex'));
-            let lastStandardDate = new Date(getCookie('lastStandardDate'));
-            const currentTimestamp = new Date();
+            const lastStandardTimestamp = parseInt(getCookie('lastStandardTimestamp')) || 0;
+            const currentTimestamp = new Date().getTime();
 
             // Check if it's a new day or the first visit for the standard song
-            if (!lastStandardDate || currentTimestamp > lastStandardDate) {
+            if (currentTimestamp > lastStandardTimestamp + 24 * 60 * 60 * 1000) {
                 // Select a new random standard song
                 const newStandardIndex = Math.floor(Math.random() * standardData.length);
                 setCookie('standardIndex', newStandardIndex);
-                setCookie('lastStandardDate', new Date(currentTimestamp.getTime() + 24 * 60 * 60 * 1000).toUTCString());
+                setCookie('lastStandardTimestamp', currentTimestamp);
 
                 const randomStandard = standardData[newStandardIndex];
 
