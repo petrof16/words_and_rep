@@ -17,20 +17,21 @@
 
 <script>
   $(document).ready(function() {
-    // Replace 'your_data.json' with the path to your JSON file
+    // Replace 'words.json' with the correct path to your JSON file
     $.getJSON('words.json', function(data) {
-      // Replace '2024-01-10' with the specific date you want to display
-      var currentDate = '2024-01-10';
+      // Get the current date
+      var currentDate = new Date().toISOString().split('T')[0];
 
       // Find the entry for the specified date
-      var entry = data.find(item => item.date === currentDate);
+      var entry = data.find(item => item.date <= currentDate);
 
-      // Display the word and definition
+      // Display the word and definition if available
       if (entry) {
         $('#word').text('Word: ' + entry.word);
         $('#definition').text('Definition: ' + entry.definition);
       } else {
-        $('#word').text('No word found for the specified date.');
+        $('#word').text('No word found for today.');
+        $('#definition').text('Check back for future words.');
       }
     });
   });
