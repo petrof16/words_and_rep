@@ -33,15 +33,20 @@
         fetch('words.json')
             .then(response => response.json())
             .then(data => {
-                // Find the entry for today's date
-                const wordOfTheDay = data.find(entry => entry.Date.toLowerCase() === today);
+                // Check if the data is an array
+                if (Array.isArray(data)) {
+                    // Find the entry for today's date
+                    const wordOfTheDay = data.find(entry => entry && entry.Date && entry.Date.toLowerCase() === today);
 
-                // Display word and definition
-                if (wordOfTheDay) {
-                    document.getElementById('word').innerText = wordOfTheDay.Word;
-                    document.getElementById('definition').innerText = wordOfTheDay.Definition;
+                    // Display word and definition
+                    if (wordOfTheDay) {
+                        document.getElementById('word').innerText = wordOfTheDay.Word || 'Word not available';
+                        document.getElementById('definition').innerText = wordOfTheDay.Definition || 'Definition not available';
+                    } else {
+                        document.getElementById('word-container').innerHTML = '<p>No word for today.</p>';
+                    }
                 } else {
-                    document.getElementById('word-container').innerHTML = '<p>No word for today.</p>';
+                    console.error('Invalid data format in words.json. Expected an array.');
                 }
             })
             .catch(error => console.error('Error fetching data:', error));
