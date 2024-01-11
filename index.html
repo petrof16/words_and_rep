@@ -5,15 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Definitions</title>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="strapdown.js"></script>
 </head>
 <body>
 
-<h1>Word of the Day</h1>
+<xmp theme="journal" style="display:none;">
 
-<div id="wordContainer">
-  <p id="word">Loading...</p>
-  <p id="definition"></p>
-</div>
+# Word of the Day
+
+Loading...
+
+Word: Loading...
+Definition: Loading...
+
+</xmp>
 
 <script>
   $(document).ready(function() {
@@ -23,15 +29,31 @@
       var currentDate = new Date().toISOString().split('T')[0];
 
       // Find the entry for the specified date
-      var entry = data.find(item => item.date <= currentDate);
+      var entry = data.find(item => item.date === currentDate);
 
       // Display the word and definition if available
-      if (entry) {
+      if (entry !== undefined) {
         $('#word').text('Word: ' + entry.word);
         $('#definition').text('Definition: ' + entry.definition);
+
+        // Set the content of the xmp element to show the word and definition
+        $('xmp').text(`
+# Word of the Day
+
+Word: ${entry.word}
+Definition: ${entry.definition}
+`);
       } else {
         $('#word').text('No word found for today.');
         $('#definition').text('Check back for future words.');
+
+        // Set the content of the xmp element to show the message
+        $('xmp').text(`
+# Word of the Day
+
+No word found for today.
+Check back for future words.
+`);
       }
     });
   });
