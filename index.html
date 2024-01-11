@@ -51,5 +51,14 @@
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
+    <script>
+        // JavaScript code to get and display the current date
+        var currentDate = new Date();
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+        // Display the current date in an element with id "currentDate"
+        document.write("<p id='currentDate'>" + formattedDate + "</p>");
+    </script>
 </body>
 </html>
