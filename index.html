@@ -4,39 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word of the Day</title>
+    <script>
+        function getCurrentDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function getWordAndDefinition() {
+            const currentDate = getCurrentDate();
+            
+            // Assuming you have loaded the JSON data from "words.json"
+            const wordsData = [
+                // ... (Your code to load the JSON data from "words.json" here)
+            ];
+
+            for (const entry of wordsData) {
+                const entryDate = entry.Date || entry.date; // Adjust for possible capitalization differences
+                if (entryDate === currentDate) {
+                    const word = entry.Word || entry.word; // Adjust for possible capitalization differences
+                    const definition = entry.Definition || entry.definition; // Adjust for possible capitalization differences
+                    return { word, definition };
+                }
+            }
+
+            return { word: 'Word not found', definition: 'Definition not found' };
+        }
+
+        function updateWordOfTheDay() {
+            const { word, definition } = getWordAndDefinition();
+            document.getElementById('word').textContent = word;
+            document.getElementById('definition').textContent = definition;
+        }
+    </script>
 </head>
-<body>
+<body onload="updateWordOfTheDay()">
 
 <h1>Word of the Day</h1>
 
-<script>
-    async function fetchWordOfTheDay() {
-        try {
-            // Fetch the JSON data from the external file
-            const response = await fetch('words.json');
-            const jsonData = await response.json();
-
-            // Get the current date in the format "YYYY-MM-DD"
-            const currentDate = new Date().toISOString().split('T')[0];
-
-            // Find the entry in the JSON data that corresponds to the current date
-            const currentEntry = jsonData.find(entry => entry.Date === currentDate);
-
-            // Display the word and definition if found, otherwise display a message
-            if (currentEntry) {
-                document.write('<h2>' + currentEntry.Word + '</h2>');
-                document.write('<p>' + currentEntry.Definition + '</p>');
-            } else {
-                document.write('<p>No word found for today.</p>');
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
-
-    // Call the function to fetch and display the word of the day
-    fetchWordOfTheDay();
-</script>
+<div>
+    <p><strong>Word:</strong> <span id="word"></span></p>
+    <p><strong>Definition:</strong> <span id="definition"></span></p>
+</div>
 
 </body>
 </html>
