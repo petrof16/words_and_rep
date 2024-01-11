@@ -4,60 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word of the Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Word of the Day</h1>
+    <label for="dateInput">Enter date (YYYY-MM-DD): </label>
+    <input type="text" id="dateInput">
+    <button onclick="getWordOfTheDay()">Get Word</button>
+
+    <div id="output"></div>
 
     <script>
-        async function fetchWordsData() {
+        async function getWordOfTheDay() {
+            var dateInput = document.getElementById('dateInput').value;
+
             try {
+                // Fetch JSON data from words.json
                 const response = await fetch('words.json');
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                console.error('Error fetching words data:', error);
-                return [];
-            }
-        }
+                const jsonData = await response.json();
 
-        function generateWordEntries(wordsData) {
-            const currentDate = getCurrentDate();
-            const entries = [];
+                // Convert dateInput and keys in jsonData to lowercase for case-insensitivity
+                dateInput = dateInput.toLowerCase();
+                var lowercasedJsonData = Object.fromEntries(
+                    Object.entries(jsonData).map(([key, value]) => [key.toLowerCase(), value])
+                );
 
-            for (const entry of wordsData) {
-                const entryDate = entry.Date || entry.date;
+                var wordEntry = lowercasedJsonData[dateInput];
 
-                if (entryDate === currentDate) {
-                    const word = entry.Word || entry.word;
-                    const definition = entry.Definition || entry.definition;
-                    entries.push(`<p><strong>${word}:</strong> ${definition}</p>`);
+                if (wordEntry) {
+                    var outputDiv = document.getElementById('output');
+                    outputDiv.innerHTML = `<p><strong>Word:</strong> ${wordEntry.word}</p><p><strong>Definition:</strong> ${wordEntry.definition}</p>`;
+                } else {
+                    alert('Word not found for the given date.');
                 }
+            } catch (error) {
+                console.error('Error fetching or parsing JSON:', error);
+                alert('Error fetching or parsing JSON. Please check the console for details.');
             }
-
-            return entries.length > 0
-                ? entries.join('')
-                : '<p><strong>No words found for today</strong></p>';
-        }
-
-        async function updateWordOfTheDay() {
-            const wordsData = await fetchWordsData();
-            const wordEntriesHTML = generateWordEntries(wordsData);
-            document.getElementById('wordEntries').innerHTML = wordEntriesHTML;
-        }
-
-        function getCurrentDate() {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
         }
     </script>
-</head>
-<body onload="updateWordOfTheDay()">
-
-<h1>Word of the Day</h1>
-
-<div id="wordEntries">
-    <!-- Word entries will be displayed here -->
-</div>
-
 </body>
 </html>
