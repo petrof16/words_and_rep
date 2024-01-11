@@ -3,105 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word of the Day</title>
+    <title>Random Word of the Day</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
             margin: 20px;
         }
-
-        h1 {
-            color: #333;
-        }
-
-        p {
-            color: #666;
+        #word-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
+    <h1>Random Word of the Day</h1>
+    <div id="word-container">
+        <h2 id="word"></h2>
+        <p id="definition"></p>
+    </div>
 
-<script>
-    // Function to set a cookie
-    function setCookie(name, value, days) {
-        var expires = '';
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = '; expires=' + date.toUTCString();
-        }
-        document.cookie = name + '=' + value + expires + '; path=/';
-    }
-
-    // Function to get a cookie value
-    function getCookie(name) {
-        var nameEQ = name + '=';
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i];
-            while (cookie.charAt(0) == ' ') {
-                cookie = cookie.substring(1, cookie.length);
+    <script>
+        // Your word and definition data
+        const wordsData = [
+            {
+                "word": "cognitive",
+                "definition": "the mental action or process of acquiring knowledge and understanding through thought, experience, and the senses: these infections can adversely affect cognition and educational achievement | a scientific study of human cognition.\n• a perception, sensation, idea, or intuition resulting from the process of cognition: greater emphasis should be placed on examining cognitions of individual family members."
+            },
+            {
+                "word": "meretricious",
+                "definition": "apparently attractive but having in reality no value or integrity: meretricious souvenirs for the tourist trade."
+            },
+            {
+                "word": "scourge",
+                "definition": "1 historical a whip used as an instrument of punishment.\n2 a person or thing that causes great trouble or suffering: the scourge of mass unemployment."
+            },
+            {
+                "word": "derivation",
+                "definition": "Mathematics the process of deducing a new formula, theorem, etc., from previously accepted statements.\n• a sequence of statements showing that a formula, theorem, etc., is a consequence of previously accepted statements."
+            },
+            {
+                "word": "juridical",
+                "definition": "relating to judicial proceedings and the administration of the law: clear words are a matter of practical rather than juridical significance."
             }
-            if (cookie.indexOf(nameEQ) == 0) {
-                return cookie.substring(nameEQ.length, cookie.length);
-            }
+        ];
+
+        // Function to display a random word and definition
+        function displayRandomWord() {
+            const randomIndex = Math.floor(Math.random() * wordsData.length);
+            const randomWord = wordsData[randomIndex];
+
+            document.getElementById('word').textContent = randomWord.word;
+            document.getElementById('definition').textContent = randomWord.definition;
         }
-        return null;
-    }
 
-    // JSON data from your file
-    var jsonData = [
-        {
-            "Date": "2024-01-10",
-            "Word": "abeyance",
-            "Definition": "a state of temporary disuse or suspension: matters were held in abeyance pending further inquiries.\n• Law the position of being without, or of waiting for, an owner or claimant."
-        },
-        {
-            "Date": "2024-01-11",
-            "Word": "abortive",
-            "Definition": "failing to produce the intended result: an abortive attempt to secure funding."
-        },
-        {
-            "Date": "2024-01-12",
-            "Word": "abrogated",
-            "Definition": "repeal or do away with (a law, right, or formal agreement): a proposal to abrogate temporarily the right to strike."
-        },
-        {
-            "Date": "2024-01-13",
-            "Word": "acculturation",
-            "Definition": "assimilation to a different culture, typically the dominant one: the process of acculturation may impact both social and psychological well-being."
-        },
-        {
-            "Date": "2024-01-14",
-            "Word": "acerbic",
-            "Definition": "(especially of a comment or style of speaking) sharp and forthright: his acerbic wit."
-        }
-    ];
+        // Display a random word on page load
+        displayRandomWord();
 
-    // Get the current date
-    var currentDate = new Date().toISOString().split('T')[0];
-
-    // Get the stored word from the cookie
-    var storedWord = getCookie('wordOfTheDay');
-
-    // Find the entry for the current date
-    var currentEntry = jsonData.find(entry => entry.Date === currentDate);
-
-    // Display the word and definition
-    if (currentEntry) {
-        // Use the stored word if available, otherwise, select a new random word
-        var selectedWord = storedWord || jsonData[Math.floor(Math.random() * jsonData.length)];
-
-        document.write('<h1>' + selectedWord.Word + '</h1>');
-        document.write('<p>' + selectedWord.Definition + '</p>');
-
-        // Store the selected word in the cookie for 24 hours
-        setCookie('wordOfTheDay', JSON.stringify(selectedWord), 1);
-    } else {
-        document.write('<p>No word found for today.</p>');
-    }
-</script>
-
+        // Set timeout to refresh the word and definition after 24 hours
+        setTimeout(() => {
+            displayRandomWord();
+        }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+    </script>
 </body>
 </html>
