@@ -32,7 +32,7 @@
       console.log('Target Date:', targetDate);
 
       // Find the entry for the specified date (case-insensitive)
-      var entry = data.find(item => item.date.toLowerCase() === targetDate.toLowerCase());
+      var entry = data.find(item => item.date && item.date.toLowerCase() === targetDate.toLowerCase());
 
       console.log('Entry for Target Date:', entry);
 
