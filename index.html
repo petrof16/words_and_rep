@@ -14,8 +14,7 @@
     <script>
         // JavaScript code to get the current date
         var currentDate = new Date();
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        var formattedDate = currentDate.toLocaleDateString('en-US', options);
+        var formattedDate = currentDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
 
         // Display the current date in an element with id "currentDate"
         document.write("<p id='currentDate'>" + formattedDate + "</p>");
@@ -35,12 +34,9 @@
         function displayWordOfDay(wordsData) {
             var wordElement = document.getElementById("wordOfDay");
 
-            // Convert current date to lowercase for case-insensitive comparison
-            var formattedDateLower = formattedDate.toLowerCase();
-
-            // Check if the current date matches any date in the JSON (case-insensitive)
+            // Check if the current date matches any date in the JSON
             for (var i = 0; i < wordsData.length; i++) {
-                if (wordsData[i].date.toLowerCase() === formattedDateLower) {
+                if (wordsData[i].date === formattedDate) {
                     var word = wordsData[i].word;
                     var definition = wordsData[i].definition;
 
