@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word of the Day</title>
+    <title>Word and Rep</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             text-align: center;
             margin: 20px;
         }
-        #word-container {
+        #word-container, #standard-container {
             border: 1px solid #ccc;
             padding: 20px;
             margin: 10px;
@@ -19,736 +19,90 @@
     </style>
 </head>
 <body>
-    <h1>Random Word of the Day</h1>
+    <h1>Random Content of the Day</h1>
+
+    <!-- Word and Definition Container -->
     <div id="word-container">
         <h2 id="word"></h2>
         <p id="definition"></p>
     </div>
 
+    <!-- Standard Song Container -->
+    <div id="standard-container">
+        <h2 id="standard"></h2>
+        <p id="bridge"></p>
+        <p id="composer"></p>
+        <p id="lyricist"></p>
+        <p id="year"></p>
+        <p id="origin"></p>
+        <p id="type"></p>
+        <p id="of-note"></p>
+    </div>
+
     <script>
         // Your word and definition data
         const wordsData = [
- {
-   "word": "cognitive",
-   "definition": "the mental action or process of acquiring knowledge and understanding through thought, experience, and the senses: these infections can adversely affect cognition and educational achievement | a scientific study of human cognition.\n• a perception, sensation, idea, or intuition resulting from the process of cognition: greater emphasis should be placed on examining cognitions of individual family members."
- },
- {
-   "word": "meretricious",
-   "definition": "apparently attractive but having in reality no value or integrity: meretricious souvenirs for the tourist trade."
- },
- {
-   "word": "scourge",
-   "definition": "1 historical a whip used as an instrument of punishment.\n2 a person or thing that causes great trouble or suffering: the scourge of mass unemployment."
- },
- {
-   "word": "derivation",
-   "definition": "Mathematics the process of deducing a new formula, theorem, etc., from previously accepted statements.\n• a sequence of statements showing that a formula, theorem, etc., is a consequence of previously accepted statements."
- },
- {
-   "word": "juridical",
-   "definition": "relating to judicial proceedings and the administration of the law: clear words are a matter of practical rather than juridical significance."
- },
- {
-   "word": "conjuncture",
-   "definition": "a combination of events: the peculiar political conjunctures that led to war."
- },
- {
-   "word": "eponymous",
-   "definition": "(of a person) giving their name to something: the eponymous hero of the novel."
- },
- {
-   "word": "cogently",
-   "definition": "(of an argument or case) clear, logical, and convincing: they put forward cogent arguments for British membership | the newspaper's lawyers must prepare a cogent appeal."
- },
- {
-   "word": "ostensibly",
-   "definition": "apparently or purportedly, but perhaps not actually: portrayed as a blue-collar type, ostensibly a carpenter."
- },
- {
-   "word": "serialization",
-   "definition": "publish or broadcast (a story or play) in regular installments: sections of the book were serialized in The New Yorker."
- },
- {
-   "word": "exoticization",
-   "definition": "portray (someone or something unfamiliar) as exotic or unusual; romanticize or glamorize: importantly, the film doesn't exoticize the East."
- },
- {
-   "word": "coeval",
-   "definition": "having the same age or date of origin; contemporary: these lavas were coeval with the volcanic activity."
- },
- {
-   "word": "paucity",
-   "definition": "the presence of something only in small or insufficient quantities or amounts; scarcity: a paucity of information."
- },
- {
-   "word": "effluent",
-   "definition": "liquid waste or sewage discharged into a river or the sea: the bay was contaminated with the effluent from an industrial plant."
- },
- {
-   "word": "adumbrate",
-   "definition": "report or represent in outline: they have adumbrated the importance of education as a means of social transformation."
- },
- {
-   "word": "germane",
-   "definition": "relevant to a subject under consideration: that is not germane to our theme."
- },
- {
-   "word": "laborious ",
-   "definition": "(especially of a task, process, or journey) requiring considerable effort and time: years of laborious training | the work is very slow and laborious."
- },
- {
-   "word": "affect",
-   "definition": "emotion or desire, especially as influencing behavior or action."
- },
- {
-   "word": "dilatory",
-   "definition": "slow to act: he had been dilatory in appointing a solicitor intended to cause delay: they resorted to dilatory procedural tactics, forcing a postponement of peace talks"
- },
- {
-   "word": "trenchant",
-   "definition": "vigorous or incisive in expression or style: she heard angry voices, not loud, yet certainly trenchant."
- },
- {
-   "word": "Normative",
-   "definition": "establishing, relating to, or deriving from a standard or norm, especially of behavior: negative sanctions to enforce normative behavior."
- },
- {
-   "word": "fiat",
-   "definition": "a formal authorization or proposition; a decree: adopting a legislative review program, rather than trying to regulate by fiat."
- },
- {
-   "word": "felicitous",
-   "definition": "well chosen or suited to the circumstances: a felicitous phrase. • pleasing and fortunate: the view was the room's only felicitous feature."
- },
- {
-   "word": "strident",
-   "definition": "loud and harsh; grating: his voice had become increasingly sharp, almost strident."
- },
- {
-   "word": "hermeneutical",
-   "definition": "adjective: concerning interpretation, especially of the Bible or literary texts.\nnoun: a method or theory of interpretation."
- },
- {
-   "word": "delve",
-   "definition": "reach inside a receptacle and search for something: she delved in her pocket.\n• research or make painstaking inquiries into something: the society is determined to delve deeper into the matter."
- },
- {
-   "word": "interlocutor",
-   "definition": "a person who takes part in a dialogue or conversation."
- },
- {
-   "word": "morally bankrupt",
-   "definition": ""
- },
- {
-   "word": "Stigmergy",
-   "definition": "A mechanism of indirect coordination, through the environment, between agents or actions.[1] The principle is that the trace left in the environment by an individual action stimulates the performance of a succeeding action by the same or different agent. Agents that respond to traces in the environment receive positive fitness benefits, reinforcing the likelihood of these behaviors becoming fixed within a population over time."
- },
- {
-   "word": "stringent",
-   "definition": "(of regulations, requirements, or conditions) strict, precise, and exacting: California's air pollution guidelines are stringent."
- },
- {
-   "word": "egalitarian",
-   "definition": "relating to or believing in the principle that all people are equal and deserve equal rights and opportunities: a fairer, more egalitarian society."
- },
- {
-   "word": "injunction",
-   "definition": "an authoritative warning or order.\n• Law a judicial order that restrains a person from beginning or continuing an action threatening or invading the legal right of another, or that compels a person to carry out a certain act, e.g., to make restitution to an injured party."
- },
- {
-   "word": "glib",
-   "definition": "(of words or the person speaking them) fluent and voluble but insincere and shallow: she was careful not to let the answer sound too glib."
- },
- {
-   "word": "Liminal",
-   "definition": "1 occupying a position at, or on both sides of, a boundary or threshold: I was in the liminal space between past and present | the paintings in this exhibition are the result of recent investigation into liminal states. \n \n2 relating to a transitional or initial stage of a process: that liminal period when a child is old enough to begin following basic rules but is still too young to do so consistently."
- },
- {
-   "word": "monolithic",
-   "definition": "(of an organization or system) large, powerful, and intractably indivisible and uniform: rejecting any move toward a monolithic European superstate."
- },
- {
-   "word": "meritocracy",
-   "definition": "government or the holding of power by people selected on the basis of their ability: progress towards meritocracy was slow."
- },
- {
-   "word": "anathematized",
-   "definition": "verb [with object] curse; condemn: she anathematized Tom as the despoiler of a helpless widow."
- },
- {
-   "word": "epistemic",
-   "definition": "Relating to knowledge or to the degree of its validation."
- },
- {
-   "word": "perihelion",
-   "definition": "the point in the orbit of a planet, asteroid, or comet at which it is closest to the sun: today Mercury is at perihelion. The opposite of aphelion."
- },
- {
-   "word": "miscreant",
-   "definition": "a person who behaves badly or in a way that breaks the law: the police are straining every nerve to bring the miscreants to justice."
- },
- {
-   "word": "agnotology",
-   "definition": "Within the sociology of knowledge, agnotology (formerly agnatology) is the study of deliberate, culturally induced ignorance or doubt, typically to sell a product, influence opinion, or win favour, particularly through the publication of inaccurate or misleading scientific data (disinformation).[3][4] More generally, the term includes the condition where more knowledge of a subject creates greater uncertainty."
- },
- {
-   "word": "beatific",
-   "definition": "blissfully happy: a beatific smile."
- },
- {
-   "word": "penchant",
-   "definition": "a strong or habitual liking for something or tendency to do something: he has a penchant for adopting stray dogs."
- },
- {
-   "word": "denunciation",
-   "definition": "public condemnation of someone or something: denunciation of his reckless methods | [count noun] : a denunciation of the bombing."
- },
- {
-   "word": "prehension",
-   "definition": "Philosophy an interaction of a subject with an event or entity which involves perception but not necessarily cognition."
- },
- {
-   "word": "perseverating",
-   "definition": "repeat or prolong an action, thought, or utterance after the stimulus that prompted it has ceased: they perseverate under stress."
- },
- {
-   "word": "Ontology",
-   "definition": "the branch of metaphysics dealing with the nature of being."
- },
- {
-   "word": "abortive",
-   "definition": "failing to produce the intended result: an abortive attempt to secure funding."
- },
- {
-   "word": "plutocrat",
-   "definition": "often derogatory\na person whose power derives from their wealth: champagne-swilling plutocrats."
- },
- {
-   "word": "situated",
-   "definition": "The situated perspective emphasizes that intelligent behaviour derives from the environment and the agent's interactions with it. The nature of these interactions are defined by an agent's embodiment."
- },
- {
-   "word": "myopia",
-   "definition": "lack of imagination, foresight, or intellectual insight: historians have been censured for their myopia in treating modern science as a western phenomenon."
- },
- {
-   "word": "lugubrious",
-   "definition": "looking or sounding sad and dismal: his face looked even more lugubrious than usual."
- },
- {
-   "word": "proverbial",
-   "definition": "(of a word or phrase) referred to in a proverb or idiom: I'm going to stick out like the proverbial sore thumb.\n• well known, especially so as to be stereotypical: the Welsh people, whose hospitality is proverbial."
- },
- {
-   "word": "Incipient",
-   "definition": "in an initial stage; beginning to happen or develop: he could feel incipient anger building up | an incipient black eye."
- },
- {
-   "word": "conspicuous",
-   "definition": "attracting special attention, as by outstanding qualities or eccentricities:"
- },
- {
-   "word": "efflorescence",
-   "definition": "rapid growth or development: the state is enjoying an incomparable cultural efflorescence | the efflorescence of capitalism."
- },
- {
-   "word": "preclude",
-   "definition": "prevent from happening; make impossible: the secret nature of his work precluded official recognition.\n• (preclude someone from) (of a situation or condition) prevent someone from doing something: his difficulties preclude him from leading a normal life."
- },
- {
-   "word": "efficaciously",
-   "definition": "(of something inanimate or abstract) successful in producing a desired or intended result; effective: the vaccine has proved both efficacious and safe."
- },
- {
-   "word": "conflates ",
-   "definition": "combine (two or more texts, ideas, etc.) into one: the urban crisis conflates a number of different economic and social issues."
- },
- {
-   "word": "inculcate",
-   "definition": "instill (an attitude, idea, or habit) by persistent instruction: the failures of the churches to inculcate a sense of moral responsibility.\n• teach (someone) an attitude, idea, or habit by persistent instruction: they will try to inculcate you with a respect for culture."
- },
- {
-   "word": "strenuous",
-   "definition": "requiring or using great exertion: all your muscles need more oxygen during strenuous exercise."
- },
- {
-   "word": "abeyance",
-   "definition": "a state of temporary disuse or suspension: matters were held in abeyance pending further inquiries.\n• Law the position of being without, or of waiting for, an owner or claimant."
- },
- {
-   "word": "hegemony",
-   "definition": "leadership or dominance, especially by one country or social group over others: Germany was united under Prussian hegemony after 1871."
- },
- {
-   "word": "precarity",
-   "definition": "Persistent insecurity or uncertainty"
- },
- {
-   "word": "umbrage",
-   "definition": "offense or annoyance: she took umbrage at his remarks."
- },
- {
-   "word": "prodigious",
-   "definition": "remarkably or impressively great in extent, size, or degree: the stove consumed a prodigious amount of fuel."
- },
- {
-   "word": "perfunctorily",
-   "definition": "(of an action or gesture) carried out with a minimum of effort or reflection: he gave a perfunctory nod."
- },
- {
-   "word": "unwieldy",
-   "definition": "difficult to carry or move because of its size, shape, or weight: the first mechanical clocks were large and unwieldy."
- },
- {
-   "word": "tenable",
-   "definition": "able to be maintained or defended against attack or objection: such a simplistic approach is no longer tenable."
- },
- {
-   "word": "polymath",
-   "definition": "a person of wide-ranging knowledge or learning: a Renaissance polymath."
- },
- {
-   "word": "coterie(s)",
-   "definition": "a small group of people with shared interests or tastes, especially one that is exclusive of other people: a coterie of friends and advisers."
- },
- {
-   "word": "particularized",
-   "definition": "mention or describe particularly; treat individually or in detail: he was unable to particularize what amounts he had paid and when."
- },
- {
-   "word": "leviathan",
-   "definition": "(in biblical use) a sea monster, identified in different passages with the whale and the crocodile (e.g. Job 41, Ps. 74:14), and with the Devil (after Isa. 27:1).\n• a very large aquatic creature, especially a whale: the great leviathans of the deep.\n• a thing that is very large or powerful, especially a ship: it's a challenge to navigate a wheeled leviathan in rush-hour traffic.\n• an autocratic monarch or state: we must tame the state Leviathan. [with allusion to Hobbes's Leviathan (1651).]"
- },
- {
-   "word": "dearth",
-   "definition": "a scarcity or lack of something: there is a dearth of evidence."
- },
- {
-   "word": "intrinsic",
-   "definition": "belonging naturally; essential: access to the arts is intrinsic to a high quality of life."
- },
- {
-   "word": "pejorative",
-   "definition": "expressing contempt or disapproval: permissiveness is used almost universally as a pejorative term."
- },
- {
-   "word": "expenditure",
-   "definition": "the action of spending funds: the expenditure of taxpayers' money.\n• an amount of money spent: cuts in public expenditure. **** It can just be an amount of stuff you give up to do something else too"
- },
- {
-   "word": "exhumation ",
-   "definition": "the action of digging up something buried, especially a corpse: the exhumation of bodies was ordered following protests by the villagers | the exhumation of a prisoners' mass grave."
- },
- {
-   "word": "dispersion",
-   "definition": "the action or process of distributing things or people over a wide area: some seeds rely on birds for dispersion."
- },
- {
-   "word": "augur",
-   "definition": "(of an event or circumstance) portend a good or bad outcome: the end of the cold war seemed to augur well | the return to the gold standard augured badly for industry."
- },
- {
-   "word": "avarice",
-   "definition": "extreme greed for wealth or material gain: he was rich beyond the dreams of avarice."
- },
- {
-   "word": "spurious",
-   "definition": "not being what it purports to be; false or fake: separating authentic and spurious claims.\n• (of a line of reasoning) apparently but not actually valid: this spurious reasoning results in nonsense.\n• archaic (of offspring) illegitimate."
- },
- {
-   "word": "diachronic",
-   "definition": "concerned with the way in which something, especially language, has developed and evolved through time. Often contrasted with synchronic: the census is also a diachronic data set | linguistic change is the diachronic aspect of linguistic variation."
- },
- {
-   "word": "historicity",
-   "definition": "historical authenticity: an effort to assert the historicity of poetry and the political power of poets."
- },
- {
-   "word": "lacuna",
-   "definition": "an unfilled space or interval; a gap: the journal has filled a lacuna in Middle Eastern studies.\n• a missing portion in a book or manuscript."
- },
- {
-   "word": "recursiveness",
-   "definition": "Mathematics & Linguistics relating to or involving the repeated application of a rule, definition, or procedure to successive results: this restriction ensures that the grammar is recursive."
- },
- {
-   "word": "exnomination",
-   "definition": "Made invisible in Western culture so that it becomes simply the norm (see also racism). Dominant groups still frequently present themselves as beyond naming in relation to aspects of identity: in many contexts, white, male, and heterosexual ‘go without saying’. The markedness of ‘*small talk’ as that of women reflects the exnomination (unmarkedness) of men's talk."
- },
- {
-   "word": "diametrically",
-   "definition": "(with reference to opposition) completely; directly: [as submodifier] : two diametrically opposed viewpoints."
- },
- {
-   "word": "flouting",
-   "definition": "openly disregard (a rule, law or convention): these same companies still flout basic ethical practices."
- },
- {
-   "word": "inextricable",
-   "definition": "impossible to disentangle or separate: the past and the present are inextricable."
- },
- {
-   "word": "miser",
-   "definition": "a person who hoards wealth and spends as little money as possible: a typical miser, he hid his money in the house in various places."
- },
- {
-   "word": "tenuous",
-   "definition": "very weak or slight: the tenuous link between interest rates and investment.\n• very slender or fine; insubstantial: a tenuous cloud."
- },
- {
-   "word": "riposte",
-   "definition": "1 a quick, clever reply to an insult or criticism. 2 a quick return thrust following a parry."
- },
- {
-   "word": "hypostasis",
-   "definition": "an underlying reality or substance, as opposed to attributes or to that which lacks substance."
- },
- {
-   "word": "ad hoc",
-   "definition": "when necessary or needed: the group was constituted ad hoc."
- },
- {
-   "word": "ebullient",
-   "definition": "cheerful and full of energy: she sounded ebullient and happy."
- },
- {
-   "word": "subsuming",
-   "definition": "include or absorb (something) in something else: most of these phenomena can be subsumed under two broad categories."
- },
- {
-   "word": "banality ",
-   "definition": "the fact or condition of being banal; unoriginality: there is an essential banality to the story he tells.\n• something that is banal: the banalities of contemporary celebrity culture."
- },
- {
-   "word": "epistemology",
-   "definition": "Theory of knowledge. The study of knowledge… what it is, how it is acquired, the validity of it…"
- },
- {
-   "word": "preponderance",
-   "definition": "the quality or fact of being greater in number, quantity, or importance: the preponderance of women among older people | forests with a preponderance of Apache pine."
- },
- {
-   "word": "milieu",
-   "definition": "a person's social environment: he grew up in a military milieu."
- },
- {
-   "word": "stymied",
-   "definition": "prevent or hinder the progress of: the changes must not be allowed to stymie new medical treatments."
- },
- {
-   "word": "salient",
-   "definition": "most noticeable or important: it succinctly covered all the salient points of the case."
- },
- {
-   "word": "dialectical",
-   "definition": "1 relating to the logical discussion of ideas and opinions: dialectical ingenuity.\n2 concerned with or acting through opposing forces: a dialectical opposition between artistic translation and transcription."
- },
- {
-   "word": "historicizing",
-   "definition": "treat or represent as historical: he attempts periodically to historicize his text | he historicized freestyle with striking aptitude."
- },
- {
-   "word": "niche",
-   "definition": "a specialized segment of the market for a particular kind of product or service: he believes he has found a niche in the market | smaller cooperatives must find and develop a niche for their speciality product.\n• Ecology a position or role taken by a particular kind of organism within its community. Such a position may be occupied by different organisms in different localities, e.g., antelopes in Africa and kangaroos in Australia: the niche left vacant by the disappearance of wolves."
- },
- {
-   "word": "phallogocentrism",
-   "definition": "In critical theory and deconstruction, phallogocentrism is a neologism coined by Jacques Derrida to refer to the privileging of the masculine in the construction of meaning. The term is a blend word of the older terms phallocentrism and logocentrism. Derrida and others identified phonocentrism, or the prioritizing of speech over writing, as an integral part of phallogocentrism. Derrida explored this idea in his essay \"Plato's Pharmacy\"."
- },
- {
-   "word": "sedulous",
-   "definition": "(of a person or action) showing dedication and diligence: he watched himself with the most sedulous care."
- },
- {
-   "word": "discrete",
-   "definition": "individually separate and distinct: speech sounds are produced as a continuous sound signal rather than discrete units."
- },
- {
-   "word": "Induction",
-   "definition": "the process or action of bringing about or giving rise to something"
- },
- {
-   "word": "rapacious",
-   "definition": "aggressively greedy or grasping: rapacious landlords."
- },
- {
-   "word": "unmooring",
-   "definition": "cause to feel insecure, confused, or disconnected: the loss of his wife has unmoored him | one of the things that unmoored me was slowly losing control of my self-image."
- },
- {
-   "word": "disparaging",
-   "definition": "expressing the opinion that something is of little worth; derogatory: disparaging remarks about public housing."
- },
- {
-   "word": "contingent",
-   "definition": "subject to chance: the contingent nature of the job. true by virtue of the way things in fact are and not by logical necessity: that men are living creatures is a contingent fact."
- },
- {
-   "word": "pernicious",
-   "definition": "having a harmful effect, especially in a gradual or subtle way: the pernicious effects of air pollution | he is one of the most pernicious influences in the party | this whole line of thinking is pernicious."
- },
- {
-   "word": "polyvalent ",
-   "definition": "having many different functions, forms, or facets: as emotion, love is polyvalent."
- },
- {
-   "word": "abrogated",
-   "definition": "repeal or do away with (a law, right, or formal agreement): a proposal to abrogate temporarily the right to strike."
- },
- {
-   "word": "doxa",
-   "definition": "a common belief or popular opinion."
- },
- {
-   "word": "semantic",
-   "definition": "relating to meaning in language or logic."
- },
- {
-   "word": "apace",
-   "definition": "literary swiftly; quickly: the vaccine rollout continues apace | the city's population was growing apace, with its ever-expanding boundaries swallowing up many outlying villages."
- },
- {
-   "word": "praxis",
-   "definition": "practice, as distinguished from theory: the gap between theory and praxis, text and world.\n• accepted practice or custom: patterns of Christian praxis in church and society."
- },
- {
-   "word": "acerbic",
-   "definition": "(especially of a comment or style of speaking) sharp and forthright: his acerbic wit."
- },
- {
-   "word": "emancipatory",
-   "definition": "set free, especially from legal, social, or political restrictions: the people were emancipated from the shackles of oppression."
- },
- {
-   "word": "indoctrination",
-   "definition": "the process of teaching a person or group to accept a set of beliefs uncritically: prisoners are subjected to brainwashing, indoctrination, and punishment | he denounces political indoctrination in the classroom."
- },
- {
-   "word": "perturbation",
-   "definition": "1 anxiety; mental uneasiness: she sensed her friend's perturbation.\n• a cause of anxiety or uneasiness: Frank's atheism was more than a perturbation to Michael.\n2 a deviation of a system, moving object, or process from its regular or normal state or path, caused by an outside influence: some minor perturbation in his house's cash flow.\n• Astronomy a minor deviation in the course of a celestial body, caused by the gravitational attraction of a neighboring body."
- },
- {
-   "word": "mendacity",
-   "definition": "untruthfulness; lying: people publicly castigated for past mendacity."
- },
- {
-   "word": "entrainment ",
-   "definition": "the synchronization of organisms to an external rhythm"
- },
- {
-   "word": "typification",
-   "definition": "be characteristic or a representative example of: tough, low-lying vegetation typifies this arctic area. • represent; symbolize: the sun typified the Greeks, and the moon the Persians."
- },
- {
-   "word": "presaging",
-   "definition": "(of an event) be a sign or warning that (something, typically something bad) will happen: the outcome of the game presaged the coming year."
- },
- {
-   "word": "axiom",
-   "definition": "a statement or proposition which is regarded as being established, accepted, or self-evidently true: the axiom that supply equals demand. mainly Mathematics a statement or proposition on which an abstractly defined structure is based."
- },
- {
-   "word": "chimera",
-   "definition": "a thing that is hoped or wished for but in fact is illusory or impossible to achieve: the economic sovereignty you claim to defend is a chimera."
- },
- {
-   "word": "automaton",
-   "definition": "a moving mechanical device made in imitation of a human being: a collection of 19th century French automata: acrobats, clowns, and musicians."
- },
- {
-   "word": "Intraspecific",
-   "definition": "produced, occurring, or existing within a species or between individuals of a single species: intraspecific competition."
- },
- {
-   "word": "solipsism",
-   "definition": "1 the quality of being very self-centered or selfish: she herself elicits scant sympathy, such is her solipsism and lack of self-awareness | in the solipsism of grief, it was as if the stars had aligned to mark my loss.\n2 Philosophy the view or theory that the self is all that can be known to exist: solipsism is an idealist thesis because ‘Only my mind exists’ entails ‘Only minds exist’."
- },
- {
-   "word": "concomitant",
-   "definition": "naturally accompanying or associated: she loved travel, with all its concomitant worries | concomitant with his obsession with dirt was a desire for order."
- },
- {
-   "word": "iterative",
-   "definition": "the repetition of a process or utterance: what is the use of this constant iteration of the same things?"
- },
- {
-   "word": "inchoate",
-   "definition": "just begun and so not fully formed or developed; rudimentary: a still inchoate democracy.\n• confused or incoherent: inchoate proletarian protest."
- },
- {
-   "word": "permissiveness",
-   "definition": "great or excessive freedom of behavior: a new age of sexual permissiveness | the permissiveness of the 1960s."
- },
- {
-   "word": "volitional",
-   "definition": "relating to the use of one's will: acceptance is a volitional act."
- },
- {
-   "word": "convivial",
-   "definition": "friendly, lively, enjoyable"
- },
- {
-   "word": "Rube Goldberg machine",
-   "definition": "a chain reaction–type machine or contraption intentionally designed to perform a simple task in an indirect and (impractically) overly complicated way."
- },
- {
-   "word": "empirical",
-   "definition": "based on, concerned with, or verifiable by observation or experience rather than theory or pure logic"
- },
- {
-   "word": "parry",
-   "definition": "ward off (a weapon or attack) with a countermove: he parried the blow by holding his sword vertically."
- },
- {
-   "word": "Nominal",
-   "definition": "existing in name only OR very small; far below the real value or cost"
- },
- {
-   "word": "conceit",
-   "definition": "excessive pride in oneself: he was puffed up with conceit."
- },
- {
-   "word": "obviate",
-   "definition": "remove (a need or difficulty): the Venetian blinds obviated the need for curtains. • avoid; prevent: a parachute can be used to obviate disaster."
- },
- {
-   "word": "subvert",
-   "definition": "undermine the power and authority of (an established system or institution): the case involved an attempt to subvert the rule of law."
- },
- {
-   "word": "dictum",
-   "definition": "a formal pronouncement from an authoritative source: the First Amendment dictum that “Congress shall make no law … abridging the freedom of speech”.\n• a short statement that expresses a general truth or principle: the old dictum “might makes right.”."
- },
- {
-   "word": "proletariat",
-   "definition": "Working class (Marx)"
- },
- {
-   "word": "banal",
-   "definition": "so lacking in originality as to be obvious and boring: songs with banal, repeated words."
- },
- {
-   "word": "well-nigh",
-   "definition": "almost: a task that is well-nigh impossible."
- },
- {
-   "word": "copious",
-   "definition": "abundant in supply or quantity: she took copious notes.\n• archaic profuse in speech or ideas: I had been a little too copious in talking of my country."
- },
- {
-   "word": "volition",
-   "definition": "the faculty or power of using one's will: without conscious volition she backed into her office."
- },
- {
-   "word": "reify",
-   "definition": "make (something abstract) more concrete or real: these instincts are, in humans, reified as verbal constructs."
- },
- {
-   "word": "infantilize ",
-   "definition": "treat (someone) as a child or in a way which denies their maturity in age or experience: seeing yourself as a victim infantilizes you."
- },
- {
-   "word": "discreet",
-   "definition": "careful and circumspect in one's speech or actions, especially in order to avoid causing offense or to gain an advantage: we made some discreet inquiries."
- },
- {
-   "word": "epistemological",
-   "definition": "relating to the theory of knowledge, especially with regard to its methods, validity, and scope, and the distinction between justified belief and opinion: what epistemological foundation is there for such an artificial discrimination?"
- },
- {
-   "word": "ancillary",
-   "definition": "providing necessary support to the primary activities or operation of an organization, institution, industry, or system: the development of ancillary services to support its products.\na person whose work provides necessary support to the primary activities of an organization, institution, or industry: the employment of specialist teachers and ancillaries."
- },
- {
-   "word": "vitriolic ",
-   "definition": "filled with bitter criticism or malice: vitriolic attacks on the politicians | vitriolic outbursts."
- },
- {
-   "word": "heuristic",
-   "definition": "enabling someone to discover or learn something for themselves: a “hands-on” or interactive heuristic approach to learning."
- },
- {
-   "word": "surreptitiously",
-   "definition": "in a way that attempts to avoid notice or attention; secretively: Mary surreptitiously slipped from the room | surreptitiously recorded conversations."
- },
- {
-   "word": "polysemy",
-   "definition": "the coexistence of many possible meanings for a word or phrase."
- },
- {
-   "word": "acculturation",
-   "definition": "assimilation to a different culture, typically the dominant one: the process of acculturation may impact both social and psychological well-being."
- },
- {
-   "word": "Phenomenology",
-   "definition": "the science of phenomena as distinct from that of the nature of being.\n• an approach that concentrates on the study of consciousness and the objects of direct experience."
- },
- {
-   "word": "loath",
-   "definition": "reluctant; unwilling: I was loath to leave."
- },
- {
-   "word": "ethos",
-   "definition": "the characteristic spirit of a culture, era, or community as manifested in its beliefs and aspirations: a challenge to the ethos of the 1960s."
- },
- {
-   "word": "formalism",
-   "definition": "excessive adherence to prescribed forms: academic dryness and formalism."
- },
- {
-   "word": "terseness ",
-   "definition": "sparing in the use of words; abrupt: a terse statement."
- },
- {
-   "word": "circumscribed",
-   "definition": "restrict (something) within limits: their movements were strictly monitored and circumscribed."
- },
- {
-   "word": "sardonic",
-   "definition": "grimly mocking or cynical: Starkey attempted a sardonic smile."
- },
- {
-   "word": "epithets",
-   "definition": "an adjective or descriptive phrase expressing a quality characteristic of the person or thing mentioned: old men are often unfairly awarded the epithet “dirty.”."
- },
- {
-   "word": "schemata",
-   "definition": "a representation of a plan or theory in the form of an outline or model: a schema of scientific reasoning.\n(plural schemata | -mətə | or schemas) "
- },
- {
-   "word": "affidavit",
-   "definition": "a written statement confirmed by oath or affirmation, for use as evidence in court: a former employee swore an affidavit relating to his claim for unfair dismissal."
- },
- {
-   "word": "idiosyncratic",
-   "definition": "a mode of behavior or way of thought peculiar to an individual: one of his little idiosyncrasies was always preferring to be in the car first."
- },
- {
-   "word": "auspicious",
-   "definition": "conducive to success; favorable: it was not the most auspicious moment to hold an election.\n• giving or being a sign of future success: they said it was an auspicious moon—it was rising.\n• archaic characterized by success; prosperous: he was respectful to his auspicious customers."
- },
- {
-   "word": "somatic",
-   "definition": "relating to the body, especially as distinct from the mind: patients completed a questionnaire about their somatic and psychological symptoms."
- },
- {
-   "word": "miscegenation",
-   "definition": "sexual relationships or reproduction between people of different ethnic groups, especially when one of them is white: the great fear was miscegenation, a mixing of bloodlines."
- },
- {
-   "word": "metonymic",
-   "definition": "the substitution of the name of an attribute or adjunct for that of the thing meant, for example suit for business executive, or the track for horse racing."
- },
- {
-   "word": "askance",
-   "definition": "with an attitude or look of suspicion or disapproval: the reformers looked askance at the mystical tradition | a waiter looked askance at Charlie's jeans."
- },
- {
-   "word": "perlocution(ary)",
-   "definition": "an act of speaking or writing which has an action as its aim but which in itself does not effect or constitute the action, for example persuading or convincing."
- }
-];
+            {
+                "word": "cognitive",
+                "definition": "the mental action or process of acquiring knowledge and understanding through thought, experience, and the senses: these infections can adversely affect cognition and educational achievement | a scientific study of human cognition.\n• a perception, sensation, idea, or intuition resulting from the process of cognition: greater emphasis should be placed on examining cognitions of individual family members."
+            },
+            {
+                "word": "meretricious",
+                "definition": "apparently attractive but having in reality no value or integrity: meretricious souvenirs for the tourist trade."
+            },
+            {
+                "word": "scourge",
+                "definition": "1 historical a whip used as an instrument of punishment.\n2 a person or thing that causes great trouble or suffering: the scourge of mass unemployment."
+            },
+            {
+                "word": "derivation",
+                "definition": "Mathematics the process of deducing a new formula, theorem, etc., from previously accepted statements.\n• a sequence of statements showing that a formula, theorem, etc., is a consequence of previously accepted statements."
+            },
+            {
+                "word": "juridical",
+                "definition": "relating to judicial proceedings and the administration of the law: clear words are a matter of practical rather than juridical significance."
+            }
+        ];
+
+        // Your new list of data
+        const standardData = [
+            {
+                "Standard": "All The Things You Are",
+                "Bridge": {
+                    "notes": ""
+                },
+                "Composer": "Jerome Kern",
+                "Lyricist": "Oscar Hammerstein",
+                "Year": "",
+                "Origin": "",
+                "Type": "",
+                "Of Note": ""
+            },
+            {
+                "Standard": "I Thought About You",
+                "Bridge": {
+                    "notes": ""
+                },
+                "Composer": "Jimmy Van Heusen",
+                "Lyricist": "Johnny Mercer",
+                "Year": "1939",
+                "Origin": "",
+                "Type": "Song",
+                "Of Note": ""
+            },
+            {
+                "Standard": "Basin Street Blues",
+                "Bridge": {
+                    "notes": ""
+                },
+                "Composer": "Spencer Williams",
+                "Lyricist": "",
+                "Year": "1928",
+                "Origin": "",
+                "Type": "Song",
+                "Of Note": ""
+            }
+        ];
 
         // Function to display a random word and definition
         function displayRandomWord() {
@@ -771,19 +125,43 @@
             document.getElementById('definition').textContent = randomWord.definition;
         }
 
-        // Display a random word on page load
-        displayRandomWord();
+        // Function to display a random standard song
+        function displayRandomStandard() {
+            const currentStandardIndex = parseInt(getCookie('standardIndex'));
+            let newStandardIndex;
 
-        // Set timeout to refresh the word and definition after 24 hours
+            // Select a new random standard different from the current one
+            do {
+                newStandardIndex = Math.floor(Math.random() * standardData.length);
+            } while (newStandardIndex === currentStandardIndex);
+
+            setCookie('standardIndex', newStandardIndex);
+
+            const randomStandard = standardData[newStandardIndex];
+
+            document.getElementById('standard').textContent = randomStandard.Standard;
+            document.getElementById('bridge').textContent = randomStandard.Bridge.notes;
+            document.getElementById('composer').textContent = `Composer: ${randomStandard.Composer}`;
+            document.getElementById('lyricist').textContent = `Lyricist: ${randomStandard.Lyricist}`;
+            document.getElementById('year').textContent = `Year: ${randomStandard.Year}`;
+            document.getElementById('origin').textContent = `Origin: ${randomStandard.Origin}`;
+            document.getElementById('type').textContent = `Type: ${randomStandard.Type}`;
+            document.getElementById('of-note').textContent = `Of Note: ${randomStandard['Of Note']}`;
+        }
+
+        // Display a random word and standard song on page load
+        displayRandomWord();
+        displayRandomStandard();
+
+        // Set timeout to refresh the word and standard song after 24 hours
         setInterval(() => {
             displayRandomWord();
+            displayRandomStandard();
         }, 24 * 60 * 60 * 1000); // Every 24 hours
 
         // Cookie functions
-        function setCookie(name, value, days) {
-            const expires = new Date();
-            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+        function setCookie(name, value) {
+            document.cookie = `${name}=${value};expires=Sun, 1 Jan 2023 00:00:00 UTC;path=/`;
         }
 
         function getCookie(name) {
