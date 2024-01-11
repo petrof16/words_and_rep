@@ -4,34 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word of the Day</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        #word-container {
-            border: 1px solid #ccc;
-            padding: 20px;
-            max-width: 400px;
-            margin: auto;
-        }
-    </style>
 </head>
 <body>
-    <h1>Word of the Day</h1>
-    <div id="word-container">
-        <h2 id="word"></h2>
-        <p id="definition"></p>
-    </div>
+
+    <h1>Word of the Day:</h1>
+
+    <p id="wordOfDay">Loading...</p>
+
     <script>
-        // JavaScript code to get and display the current date
+        // JavaScript code to get the current date
         var currentDate = new Date();
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         var formattedDate = currentDate.toLocaleDateString('en-US', options);
 
         // Display the current date in an element with id "currentDate"
         document.write("<p id='currentDate'>" + formattedDate + "</p>");
+
+        // Asynchronous request to load words.json
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var wordsData = JSON.parse(this.responseText);
+                displayWordOfDay(wordsData);
+            }
+        };
+        xhr.open("GET", "words.json", true);
+        xhr.send();
+
+        // Function to display the word of the day
+        function displayWordOfDay(wordsData) {
+            var wordElement = document.getElementById("wordOfDay");
+
+            // Convert current date to lowercase for case-insensitive comparison
+            var formattedDateLower = formattedDate.toLowerCase();
+
+            // Check if the current date matches any date in the JSON (case-insensitive)
+            for (var i = 0; i < wordsData.length; i++) {
+                if (wordsData[i].date.toLowerCase() === formattedDateLower) {
+                    var word = wordsData[i].word;
+                    var definition = wordsData[i].definition;
+
+                    // Display the word and definition
+                    wordElement.innerHTML = "<strong>" + word + "</strong>: " + definition;
+                    return;
+                }
+            }
+
+            // If no match is found, display a default message
+            wordElement.innerHTML = "No word of the day found for " + formattedDate + ".";
+        }
     </script>
+
 </body>
 </html>
