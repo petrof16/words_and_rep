@@ -38,7 +38,7 @@
         fetch('words.json')
             .then(response => response.json())
             .then(jsonData => {
-                var today = new Date().toISOString().split('T')[0]; // Get today's date in "YYYY-MM-DD" format
+                var today = new Date().toLocaleDateString(); // Get today's date in local format
 
                 // Filter the JSON data for entries with today's date
                 var todayEntry = jsonData.find(entry => entry.date === today);
