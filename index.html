@@ -5,15 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Definitions</title>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- Include your custom CSS file -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!-- Include strapdown.js library -->
+  <script src="strapdown.js"></script>
 </head>
 <body>
 
-<h1>Word of the Day</h1>
+<xmp theme="journal" style="display:none;">
 
-<div id="wordContainer">
-  <p id="word">Loading...</p>
-  <p id="definition"></p>
-</div>
+# Word of the Day
+
+Loading...
+
+Word: Loading...
+Definition: Loading...
+
+</xmp>
 
 <script>
   $(document).ready(function() {
@@ -33,6 +43,14 @@
         $('#word').text('No word found for today.');
         $('#definition').text('Check back for future words.');
       }
+
+      // Set the content of the xmp element to show the word and definition
+      $('xmp').text(`
+# Word of the Day
+
+${$('#word').text()}
+${$('#definition').text()}
+`);
     });
   });
 </script>
