@@ -21,13 +21,14 @@
   $(document).ready(function() {
     // Replace 'words.json' with the correct path to your JSON file
     $.getJSON('words.json', function(data) {
-      // Get the current date
+      // Get the current date in YYYY-MM-DD format
       var currentDate = new Date().toISOString().split('T')[0];
+
+      console.log('Current Date:', currentDate);
 
       // Find the entry for the specified date
       var entry = data.find(item => item.date === currentDate);
 
-      console.log('Current Date:', currentDate);
       console.log('Entry for Today:', entry);
 
       // Display the word and definition if available
@@ -52,6 +53,7 @@
     });
   });
 </script>
+
 
 </body>
 </html>
