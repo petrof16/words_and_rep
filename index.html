@@ -4,52 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word of the Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Word of the Day:</h1>
-
-    <p id="wordOfDay">Loading...</p>
-
-    <script>
-        // JavaScript code to get the current date
-        var currentDate = new Date();
-        var formattedDate = currentDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
-
-        // Display the current date in an element with id "currentDate"
-        document.write("<p id='currentDate'>" + formattedDate + "</p>");
-
-        // Asynchronous request to load words.json
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var wordsData = JSON.parse(this.responseText);
-                displayWordOfDay(wordsData);
-            }
-        };
-        xhr.open("GET", "words.json", true);
-        xhr.send();
-
-        // Function to display the word of the day
-        function displayWordOfDay(wordsData) {
-            var wordElement = document.getElementById("wordOfDay");
-
-            // Check if the current date matches any date in the JSON
-            for (var i = 0; i < wordsData.length; i++) {
-                if (wordsData[i].date === formattedDate) {
-                    var word = wordsData[i].word;
-                    var definition = wordsData[i].definition;
-
-                    // Display the word and definition
-                    wordElement.innerHTML = "<strong>" + word + "</strong>: " + definition;
-                    return;
-                }
-            }
-
-            // If no match is found, display a default message
-            wordElement.innerHTML = "No word of the day found for " + formattedDate + ".";
+<script>
+    // JSON data from your file
+    var jsonData = [
+        {
+            "Date": "2024-01-10",
+            "Word": "abeyance",
+            "Definition": "a state of temporary disuse or suspension: matters were held in abeyance pending further inquiries.\n• Law the position of being without, or of waiting for, an owner or claimant."
+        },
+        {
+            "Date": "2024-01-11",
+            "Word": "abortive",
+            "Definition": "failing to produce the intended result: an abortive attempt to secure funding."
+        },
+        {
+            "Date": "2024-01-12",
+            "Word": "abrogated",
+            "Definition": "repeal or do away with (a law, right, or formal agreement): a proposal to abrogate temporarily the right to strike."
+        },
+        {
+            "Date": "2024-01-13",
+            "Word": "acculturation",
+            "Definition": "assimilation to a different culture, typically the dominant one: the process of acculturation may impact both social and psychological well-being."
+        },
+        {
+            "Date": "2024-01-14",
+            "Word": "acerbic",
+            "Definition": "(especially of a comment or style of speaking) sharp and forthright: his acerbic wit."
         }
-    </script>
+    ];
+
+    // Get the current date
+    var currentDate = new Date().toISOString().split('T')[0];
+
+    // Find the entry for the current date
+    var currentEntry = jsonData.find(entry => entry.Date === currentDate);
+
+    // Display the word and definition
+    if (currentEntry) {
+        document.write('<h1>' + currentEntry.Word + '</h1>');
+        document.write('<p>' + currentEntry.Definition + '</p>');
+    } else {
+        document.write('<p>No word found for today.</p>');
+    }
+</script>
 
 </body>
 </html>
