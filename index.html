@@ -9,16 +9,13 @@
 </head>
 <body>
 
-<xmp theme="journal" style="display:none;">
-
-# Word of the Motherfuckin Day
-
-Loading...
-
-Word: Loading...
-Definition: Loading...
-
-</xmp>
+<div id="wordContainer">
+  <h1>Word of the Day</h1>
+  <div id="wordContent">
+    <p id="word">Loading...</p>
+    <p id="definition"></p>
+  </div>
+</div>
 
 <script>
   $(document).ready(function() {
@@ -35,31 +32,23 @@ Definition: Loading...
         $('#word').text('Word: ' + entry.word);
         $('#definition').text('Definition: ' + entry.definition);
 
-        // Set the content of the xmp element to show the word and definition
-        $('xmp').text(`
-# Word of the Day
-
-Word: ${entry.word}
-Definition: ${entry.definition}
-`);
+        // Set the content of the wordContent div
+        $('#wordContent').html(`
+          <h1>Word of the Day</h1>
+          <p>Word: ${entry.word}</p>
+          <p>Definition: ${entry.definition}</p>
+        `);
       } else {
-        $('#word').text('No word found for today.');
-        $('#definition').text('Check back for future words.');
-
-        // Set the content of the xmp element to show the message
-        $('xmp').text(`
-# Word of the Day
-
-No word found for today.
-Check back for future words.
-`);
+        // Set the content if no word is found for today
+        $('#wordContent').html(`
+          <h1>Word of the Day</h1>
+          <p>No word found for today.</p>
+          <p>Check back for future words.</p>
+        `);
       }
     });
   });
 </script>
-
-<!-- Load strapdown.js at the end of the body -->
-<script src="strapdown.js"></script>
 
 </body>
 </html>
