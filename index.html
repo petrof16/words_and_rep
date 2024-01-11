@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Definitions</title>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data Display</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
 
-<div id="wordContainer">
-  <h1>Word of the fuck me please</h1>
-  <div id="wordContent">
-    <p id="word">Loading...</p>
-    <p id="definition"></p>
-  </div>
-</div>
+    <h1>JSON Data Display</h1>
 
-<script>
-  $(document).ready(function() {
-    // Replace 'words.json' with the correct path to your JSON file
-    $.getJSON('words.json', function(data) {
-      // Get the current date in YYYY-MM-DD format
-      var currentDate = new Date().toISOString().split('T')[0];
+    <table id="jsonTable">
+        <tr>
+            <th>Date</th>
+            <th>Word</th>
+            <th>Definition</th>
+        </tr>
+    </table>
 
-      console.log('Current Date:', currentDate);
+    <script>
+        // Fetch the JSON file
+        fetch('words.json')
+            .then(response => response.json())
+            .then(jsonData => {
+                var table = document.getElementById("jsonTable");
 
-      // Find the entry for the specified date
-      var entry = data.find(item => item.date === currentDate);
+                jsonData.forEach(function(entry) {
+                    var row = table.insertRow(-1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
 
-      console.log('Entry for Today:', entry);
-
-      // Display the word and definition if available
-      if (entry !== undefined) {
-        $('#word').text('Word: ' + entry.word);
-        $('#definition').text('Definition: ' + entry.definition);
-
-        // Set the content of the wordContent div
-        $('#wordContent').html(`
-          <h1>Word of the Day</h1>
-          <p>Word: ${entry.word}</p>
-          <p>Definition: ${entry.definition}</p>
-        `);
-      } else {
-        // Set the content if no word is found for today
-        $('#wordContent').html(`
-          <h1>Word of the Day</h1>
-          <p>No word found for today.</p>
-          <p>Check back for future words.</p>
-        `);
-      }
-    });
-  });
-</script>
-
+                    cell1.innerHTML = entry.date;
+                    cell2.innerHTML = entry.word;
+                    cell3.innerHTML = entry.definition;
+                });
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
 
 </body>
 </html>
