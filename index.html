@@ -42,7 +42,7 @@
                 var today = new Date().toLocaleDateString(); // Get today's date in local format
 
                 // Filter the JSON data for entries with today's date
-                var todayEntries = jsonData.filter(entry => entry.Date === today);
+                var todayEntries = jsonData.filter(entry => entry.Date === today || entry.date === today);
 
                 console.log('Today\'s Entries:', todayEntries);
 
