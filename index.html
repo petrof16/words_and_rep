@@ -8,55 +8,43 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 20px;
+            margin: 50px;
         }
-
-        h1 {
-            color: #333;
-        }
-
-        #output {
-            margin-top: 20px;
-            font-size: 18px;
+        #word-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
         }
     </style>
 </head>
 <body>
     <h1>Word of the Day</h1>
-    <label for="dateInput">Enter date (YYYY-MM-DD): </label>
-    <input type="text" id="dateInput">
-    <button onclick="getWordOfTheDay()">Get Word</button>
-
-    <div id="output"></div>
+    <div id="word-container">
+        <h2 id="word"></h2>
+        <p id="definition"></p>
+    </div>
 
     <script>
-        async function getWordOfTheDay() {
-            var dateInput = document.getElementById('dateInput').value;
+        // Fetch today's date
+        const today = new Date().toISOString().split('T')[0];
 
-            try {
-                // Fetch JSON data from words.json
-                const response = await fetch('words.json');
-                const jsonData = await response.json();
+        // Fetch data from words.json
+        fetch('words.json')
+            .then(response => response.json())
+            .then(data => {
+                // Find the entry for today's date
+                const wordOfTheDay = data.find(entry => entry.Date === today);
 
-                // Convert dateInput and keys in jsonData to lowercase for case-insensitivity
-                dateInput = dateInput.toLowerCase();
-                var lowercasedJsonData = Object.fromEntries(
-                    Object.entries(jsonData).map(([key, value]) => [key.toLowerCase(), value])
-                );
-
-                var wordEntry = lowercasedJsonData[dateInput];
-
-                if (wordEntry) {
-                    var outputDiv = document.getElementById('output');
-                    outputDiv.innerHTML = `<p><strong>Word:</strong> ${wordEntry.word}</p><p><strong>Definition:</strong> ${wordEntry.definition}</p>`;
+                // Display word and definition
+                if (wordOfTheDay) {
+                    document.getElementById('word').innerText = wordOfTheDay.Word;
+                    document.getElementById('definition').innerText = wordOfTheDay.Definition;
                 } else {
-                    alert('Word not found for the given date.');
+                    document.getElementById('word-container').innerHTML = '<p>No word for today.</p>';
                 }
-            } catch (error) {
-                console.error('Error fetching or parsing JSON:', error);
-                alert('Error fetching or parsing JSON. Please check the console for details.');
-            }
-        }
+            })
+            .catch(error => console.error('Error fetching data:', error));
     </script>
 </body>
 </html>
