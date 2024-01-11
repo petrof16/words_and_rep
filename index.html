@@ -27,6 +27,9 @@
       // Find the entry for the specified date
       var entry = data.find(item => item.date === currentDate);
 
+      console.log('Current Date:', currentDate);
+      console.log('Entry for Today:', entry);
+
       // Display the word and definition if available
       if (entry !== undefined) {
         $('#word').text('Word: ' + entry.word);
