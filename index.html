@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word of the Day please work</title>
+    <title>Word of the Day</title>
     <script>
+        async function fetchWordsData() {
+            try {
+                const response = await fetch('words.json');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching words data:', error);
+                return [];
+            }
+        }
+
         function getCurrentDate() {
             const today = new Date();
             const year = today.getFullYear();
@@ -13,19 +24,14 @@
             return `${year}-${month}-${day}`;
         }
 
-        function getWordAndDefinition() {
+        function getWordAndDefinition(wordsData) {
             const currentDate = getCurrentDate();
-            
-            // Assuming you have loaded the JSON data from "words.json"
-            const wordsData = [
-                // ... (Your code to load the JSON data from "words.json" here)
-            ];
 
             for (const entry of wordsData) {
-                const entryDate = entry.Date || entry.date; // Adjust for possible capitalization differences
+                const entryDate = entry.Date || entry.date;
                 if (entryDate === currentDate) {
-                    const word = entry.Word || entry.word; // Adjust for possible capitalization differences
-                    const definition = entry.Definition || entry.definition; // Adjust for possible capitalization differences
+                    const word = entry.Word || entry.word;
+                    const definition = entry.Definition || entry.definition;
                     return { word, definition };
                 }
             }
@@ -33,8 +39,9 @@
             return { word: 'Word not found', definition: 'Definition not found' };
         }
 
-        function updateWordOfTheDay() {
-            const { word, definition } = getWordAndDefinition();
+        async function updateWordOfTheDay() {
+            const wordsData = await fetchWordsData();
+            const { word, definition } = getWordAndDefinition(wordsData);
             document.getElementById('word').textContent = word;
             document.getElementById('definition').textContent = definition;
         }
