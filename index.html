@@ -1,51 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word of the Day</title>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <style>
-    #wordContainer {
-      text-align: center;
-      margin: 50px;
-    }
-
-    #wordContent {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word of the Day</title>
 </head>
 <body>
 
-<div id="wordContainer">
-  <h1>Word of the Day</h1>
-  <div id="wordContent">
-    <p id="word">Loading...</p>
-    <p id="definition"></p>
-  </div>
-</div>
+<h1>Word of the Day</h1>
 
 <script>
-  $(document).ready(function() {
-    // Replace 'words.json' with the correct path to your JSON file
-    $.getJSON('words.json', function(data) {
-      // Specify the date you want to display (January 11, 2024)
-      var targetDate = '2024-01-11';
+    // Your JSON data
+    var jsonData = [
+        {
+            "Date": "2024-01-10",
+            "Word": "abeyance",
+            "Definition": "a state of temporary disuse or suspension: matters were held in abeyance pending further inquiries.\n• Law the position of being without, or of waiting for, an owner or claimant."
+        },
+        {
+            "Date": "2024-01-11",
+            "Word": "abortive",
+            "Definition": "failing to produce the intended result: an abortive attempt to secure funding."
+        },
+        {
+            "Date": "2024-01-12",
+            "Word": "abrogated",
+            "Definition": "repeal or do away with (a law, right, or formal agreement): a proposal to abrogate temporarily the right to strike."
+        },
+        {
+            "Date": "2024-01-13",
+            "Word": "acculturation",
+            "Definition": "assimilation to a different culture, typically the dominant one: the process of acculturation may impact both social and psychological well-being."
+        },
+        {
+            "Date": "2024-01-14",
+            "Word": "acerbic",
+            "Definition": "(especially of a comment or style of speaking) sharp and forthright: his acerbic wit."
+        },
+        {
+            "Date": "2024-01-15",
+            "Word": "ad hoc",
+            "Definition": "when necessary or needed: the group was constituted ad hoc."
+        },
+        {
+            "Date": "2024-01-16",
+            "Word": "adumbrate",
+            "Definition": "report or represent in outline: they have adumbrated the importance of education as a means of social transformation."
+        }
+    ];
 
-      // Find the entry for the specified date (case-insensitive)
-      var entry = data.find(item => item.date && item.date.toLowerCase() === targetDate.toLowerCase());
+    // Get the current date in the format "YYYY-MM-DD"
+    var currentDate = new Date().toISOString().split('T')[0];
 
-      // Display the word and definition if available
-      if (entry !== undefined) {
-        $('#word').text('Word: ' + entry.word);
-        $('#definition').text('Definition: ' + entry.definition);
-      } else {
-        $('#wordContainer').html('<p>No word found for today. Check back for future words.</p>');
-      }
-    });
-  });
+    // Find the entry in the JSON data that corresponds to the current date
+    var currentEntry = jsonData.find(entry => entry.Date === currentDate);
+
+    // Display the word and definition if found, otherwise display a message
+    if (currentEntry) {
+        document.write('<h2>' + currentEntry.Word + '</h2>');
+        document.write('<p>' + currentEntry.Definition + '</p>');
+    } else {
+        document.write('<p>No word found for today.</p>');
+    }
 </script>
 
 </body>
