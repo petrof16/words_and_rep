@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-    <h1>Random Word of the Day</h1>
+    <h1>Word of the Day</h1>
     <div id="word-container">
         <h2 id="word"></h2>
         <p id="definition"></p>
@@ -52,22 +52,8 @@
 
         // Function to display a random word and definition
         function displayRandomWord() {
-            const currentDate = new Date().toDateString();
-            let currentIndex = parseInt(localStorage.getItem('wordIndex')) || -1;
-            let lastDate = localStorage.getItem('lastDate') || '';
-
-            // Check if it's a new day or the first visit
-            if (currentDate !== lastDate) {
-                // Select a new random word different from the current one
-                do {
-                    currentIndex = Math.floor(Math.random() * wordsData.length);
-                } while (currentIndex === parseInt(localStorage.getItem('wordIndex')));
-
-                localStorage.setItem('wordIndex', currentIndex);
-                localStorage.setItem('lastDate', currentDate);
-            }
-
-            const randomWord = wordsData[currentIndex];
+            const randomIndex = Math.floor(Math.random() * wordsData.length);
+            const randomWord = wordsData[randomIndex];
 
             document.getElementById('word').textContent = randomWord.word;
             document.getElementById('definition').textContent = randomWord.definition;
@@ -77,9 +63,9 @@
         displayRandomWord();
 
         // Set timeout to refresh the word and definition after 24 hours
-        setInterval(() => {
+        setTimeout(() => {
             displayRandomWord();
-        }, 24 * 60 * 60 * 1000); // Every 24 hours
+        }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
     </script>
 </body>
 </html>
