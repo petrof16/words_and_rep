@@ -28,6 +28,7 @@
 
     <table id="jsonTable">
         <tr>
+            <th>Date</th>
             <th>Word</th>
             <th>Definition</th>
         </tr>
@@ -41,7 +42,9 @@
                 var today = new Date().toLocaleDateString(); // Get today's date in local format
 
                 // Filter the JSON data for entries with today's date
-                var todayEntries = jsonData.filter(entry => entry.date === today);
+                var todayEntries = jsonData.filter(entry => entry.Date === today);
+
+                console.log('Today\'s Entries:', todayEntries);
 
                 if (todayEntries.length > 0) {
                     var table = document.getElementById("jsonTable");
