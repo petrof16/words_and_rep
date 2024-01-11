@@ -27,14 +27,14 @@
 
     <script>
         // Fetch today's date
-        const today = new Date().toISOString().split('T')[0];
+        const today = new Date().toISOString().split('T')[0].toLowerCase();
 
         // Fetch data from words.json
         fetch('words.json')
             .then(response => response.json())
             .then(data => {
                 // Find the entry for today's date
-                const wordOfTheDay = data.find(entry => entry.Date === today);
+                const wordOfTheDay = data.find(entry => entry.Date.toLowerCase() === today);
 
                 // Display word and definition
                 if (wordOfTheDay) {
