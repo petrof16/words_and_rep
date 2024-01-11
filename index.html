@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word of the Day</title>
+
     <script>
         async function fetchWordsData() {
             try {
@@ -16,6 +17,31 @@
             }
         }
 
+        function generateWordEntries(wordsData) {
+            const currentDate = getCurrentDate();
+            const entries = [];
+
+            for (const entry of wordsData) {
+                const entryDate = entry.Date || entry.date;
+
+                if (entryDate === currentDate) {
+                    const word = entry.Word || entry.word;
+                    const definition = entry.Definition || entry.definition;
+                    entries.push(`<p><strong>${word}:</strong> ${definition}</p>`);
+                }
+            }
+
+            return entries.length > 0
+                ? entries.join('')
+                : '<p><strong>No words found for today</strong></p>';
+        }
+
+        async function updateWordOfTheDay() {
+            const wordsData = await fetchWordsData();
+            const wordEntriesHTML = generateWordEntries(wordsData);
+            document.getElementById('wordEntries').innerHTML = wordEntriesHTML;
+        }
+
         function getCurrentDate() {
             const today = new Date();
             const year = today.getFullYear();
@@ -23,37 +49,14 @@
             const day = String(today.getDate()).padStart(2, '0');
             return `${year}-${month}-${day}`;
         }
-
-        function getWordAndDefinition(wordsData) {
-            const currentDate = getCurrentDate();
-
-            for (const entry of wordsData) {
-                const entryDate = entry.Date || entry.date;
-                if (entryDate === currentDate) {
-                    const word = entry.Word || entry.word;
-                    const definition = entry.Definition || entry.definition;
-                    return { word, definition };
-                }
-            }
-
-            return { word: 'Word not found', definition: 'Definition not found' };
-        }
-
-        async function updateWordOfTheDay() {
-            const wordsData = await fetchWordsData();
-            const { word, definition } = getWordAndDefinition(wordsData);
-            document.getElementById('word').textContent = word;
-            document.getElementById('definition').textContent = definition;
-        }
     </script>
 </head>
 <body onload="updateWordOfTheDay()">
 
 <h1>Word of the Day</h1>
 
-<div>
-    <p><strong>Word:</strong> <span id="word"></span></p>
-    <p><strong>Definition:</strong> <span id="definition"></span></p>
+<div id="wordEntries">
+    <!-- Word entries will be displayed here -->
 </div>
 
 </body>
