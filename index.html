@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-    <h1>Word of the Day</h1>
+    <h1>Random Word of the Day</h1>
     <div id="word-container">
         <h2 id="word"></h2>
         <p id="definition"></p>
@@ -52,8 +52,20 @@
 
         // Function to display a random word and definition
         function displayRandomWord() {
-            const randomIndex = Math.floor(Math.random() * wordsData.length);
-            const randomWord = wordsData[randomIndex];
+            const currentDate = new Date().toDateString();
+            let currentIndex = parseInt(getCookie('wordIndex'));
+            let lastDate = getCookie('lastDate');
+
+            // Check if it's a new day or the first visit
+            if (!currentIndex || !lastDate || currentDate !== lastDate) {
+                // Select a new random word different from the current one
+                currentIndex = Math.floor(Math.random() * wordsData.length);
+
+                setCookie('wordIndex', currentIndex);
+                setCookie('lastDate', currentDate);
+            }
+
+            const randomWord = wordsData[currentIndex];
 
             document.getElementById('word').textContent = randomWord.word;
             document.getElementById('definition').textContent = randomWord.definition;
@@ -63,9 +75,21 @@
         displayRandomWord();
 
         // Set timeout to refresh the word and definition after 24 hours
-        setTimeout(() => {
+        setInterval(() => {
             displayRandomWord();
-        }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+        }, 24 * 60 * 60 * 1000); // Every 24 hours
+
+        // Cookie functions
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+        }
+
+        function getCookie(name) {
+            const keyValue = document.cookie.match(`(^|;) ?${name}=([^;]*)(;|$)`);
+            return keyValue ? keyValue[2] : null;
+        }
     </script>
 </body>
 </html>
