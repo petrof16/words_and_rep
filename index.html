@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    <h1>Today's Words and Definitions PLease work</h1>
+    <h1>Today's Words and Definitions</h1>
 
     <table id="jsonTable">
         <tr>
@@ -40,6 +40,8 @@
             .then(response => response.json())
             .then(jsonData => {
                 var today = new Date().toLocaleDateString(); // Get today's date in local format
+
+                console.log('Today\'s Date:', today);
 
                 // Filter the JSON data for entries with today's date
                 var todayEntries = jsonData.filter(entry => entry.Date === today || entry.date === today);
