@@ -1,73 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Today's Words and Definitions</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Definitions</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-    <h1>Today's Words and Definitions</h1>
+<div id="wordContainer">
+  <h1>Word of the Day</h1>
+  <div id="wordContent">
+    <p id="word">Loading...</p>
+    <p id="definition"></p>
+  </div>
+</div>
 
-    <table id="jsonTable">
-        <tr>
-            <th>Date</th>
-            <th>Word</th>
-            <th>Definition</th>
-        </tr>
-    </table>
+<script>
+  $(document).ready(function() {
+    // Replace 'words.json' with the correct path to your JSON file
+    $.getJSON('words.json', function(data) {
+      // Get the current date in YYYY-MM-DD format
+      var currentDate = new Date().toISOString().split('T')[0];
 
-    <script>
-        // Fetch the JSON file
-        fetch('words.json')
-            .then(response => response.json())
-            .then(jsonData => {
-                var today = new Date().toLocaleDateString(); // Get today's date in local format
+      console.log('Current Date:', currentDate);
 
-                console.log('Today\'s Date:', today);
+      // Specify the date you want to display (January 11, 2024)
+      var targetDate = '2024-01-11';
 
-                // Filter the JSON data for entries with today's date
-                var todayEntries = jsonData.filter(entry => entry.Date === today || entry.date === today);
+      console.log('Target Date:', targetDate);
 
-                console.log('Today\'s Entries:', todayEntries);
+      // Find the entry for the specified date (case-insensitive)
+      var entry = data.find(item => item.date.toLowerCase() === targetDate.toLowerCase());
 
-                if (todayEntries.length > 0) {
-                    var table = document.getElementById("jsonTable");
+      console.log('Entry for Target Date:', entry);
 
-                    todayEntries.forEach(function(entry) {
-                        var row = table.insertRow(-1);
+      // Display the word and definition if available
+      if (entry !== undefined) {
+        $('#word').text('Word: ' + entry.word);
+        $('#definition').text('Definition: ' + entry.definition);
 
-                        // Iterate over the properties and convert them to lowercase
-                        for (var prop in entry) {
-                            if (entry.hasOwnProperty(prop)) {
-                                var cell = row.insertCell(-1);
-                                cell.innerHTML = entry[prop];
-                            }
-                        }
-                    });
-                } else {
-                    console.error('No words found for today in the JSON data.');
-                }
-            })
-            .catch(error => console.error('Error fetching JSON:', error));
-    </script>
+        // Set the content of the wordContent div
+        $('#wordContent').html(`
+          <h1>Word of the Day</h1>
+          <p>Word: ${entry.word}</p>
+          <p>Definition: ${entry.definition}</p>
+        `);
+      } else {
+        // Set the content if no word is found for today
+        $('#wordContent').html(`
+          <h1>Word of the Day</h1>
+          <p>No word found for today.</p>
+          <p>Check back for future words.</p>
+        `);
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
