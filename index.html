@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Definitions</title>
+  <title>Word of the Day</title>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    #wordContainer {
+      text-align: center;
+      margin: 50px;
+    }
+
+    #wordContent {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
 
@@ -21,39 +31,18 @@
   $(document).ready(function() {
     // Replace 'words.json' with the correct path to your JSON file
     $.getJSON('words.json', function(data) {
-      // Get the current date in YYYY-MM-DD format
-      var currentDate = new Date().toISOString().split('T')[0];
-
-      console.log('Current Date:', currentDate);
-
       // Specify the date you want to display (January 11, 2024)
       var targetDate = '2024-01-11';
 
-      console.log('Target Date:', targetDate);
-
       // Find the entry for the specified date (case-insensitive)
       var entry = data.find(item => item.date && item.date.toLowerCase() === targetDate.toLowerCase());
-
-      console.log('Entry for Target Date:', entry);
 
       // Display the word and definition if available
       if (entry !== undefined) {
         $('#word').text('Word: ' + entry.word);
         $('#definition').text('Definition: ' + entry.definition);
-
-        // Set the content of the wordContent div
-        $('#wordContent').html(`
-          <h1>Word of the Day</h1>
-          <p>Word: ${entry.word}</p>
-          <p>Definition: ${entry.definition}</p>
-        `);
       } else {
-        // Set the content if no word is found for today
-        $('#wordContent').html(`
-          <h1>Word of the Day</h1>
-          <p>No word found for today.</p>
-          <p>Check back for future words.</p>
-        `);
+        $('#wordContainer').html('<p>No word found for today. Check back for future words.</p>');
       }
     });
   });
