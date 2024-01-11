@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Today's Word and Definition HEOPODN</title>
+    <title>Today's Words and Definitions</title>
     <style>
         table {
             border-collapse: collapse;
@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    <h1>Today's Word and Definition</h1>
+    <h1>Today's Words and Definitions</h1>
 
     <table id="jsonTable">
         <tr>
@@ -41,21 +41,24 @@
                 var today = new Date().toLocaleDateString(); // Get today's date in local format
 
                 // Filter the JSON data for entries with today's date
-                var todayEntry = jsonData.find(entry => entry.date === today);
+                var todayEntries = jsonData.filter(entry => entry.date === today);
 
-                if (todayEntry) {
+                if (todayEntries.length > 0) {
                     var table = document.getElementById("jsonTable");
-                    var row = table.insertRow(-1);
 
-                    // Iterate over the properties and convert them to lowercase
-                    for (var prop in todayEntry) {
-                        if (todayEntry.hasOwnProperty(prop)) {
-                            var cell = row.insertCell(-1);
-                            cell.innerHTML = todayEntry[prop];
+                    todayEntries.forEach(function(entry) {
+                        var row = table.insertRow(-1);
+
+                        // Iterate over the properties and convert them to lowercase
+                        for (var prop in entry) {
+                            if (entry.hasOwnProperty(prop)) {
+                                var cell = row.insertCell(-1);
+                                cell.innerHTML = entry[prop];
+                            }
                         }
-                    }
+                    });
                 } else {
-                    console.error('Today\'s word not found in the JSON data.');
+                    console.error('No words found for today in the JSON data.');
                 }
             })
             .catch(error => console.error('Error fetching JSON:', error));
