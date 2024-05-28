@@ -106,6 +106,42 @@ function addStandard() {
     }
 }
 
+// Function to batch upload words
+function batchUploadWords() {
+    const fileInput = document.getElementById('word-file-upload');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const newWords = JSON.parse(event.target.result);
+            wordsData.push(...newWords);
+            alert('Words uploaded successfully!');
+        };
+        reader.readAsText(file);
+    } else {
+        alert('Please select a file to upload.');
+    }
+}
+
+// Function to batch upload standards
+function batchUploadStandards() {
+    const fileInput = document.getElementById('standard-file-upload');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const newStandards = JSON.parse(event.target.result);
+            standardData.push(...newStandards);
+            alert('Standards uploaded successfully!');
+        };
+        reader.readAsText(file);
+    } else {
+        alert('Please select a file to upload.');
+    }
+}
+
 // Cookie functions
 function setCookie(name, value) {
     document.cookie = `${name}=${value};expires=Sun, 1 Jan 2023 00:00:00 UTC;path=/`;
