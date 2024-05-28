@@ -7,32 +7,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Input New Word and Standard</h1>
     <nav>
-        <a href="index.html">Home</a> |
-        <a href="input.html">Input New Data</a>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Words and Standards</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="input.html">Input New Data</a>
+            </div>
+        </div>
     </nav>
 
-    <div id="word-input-container">
-        <h2>Add a New Word</h2>
-        <input type="text" id="new-word" placeholder="Word"><br>
-        <input type="text" id="new-definition" placeholder="Definition"><br>
-        <input type="text" id="new-example" placeholder="Example"><br>
-        <button onclick="addWord()">Add Word</button>
-    </div>
+    <header class="header">
+        <h1>Input New Word and Standard</h1>
+    </header>
 
-    <div id="standard-input-container">
-        <h2>Add a New Standard</h2>
-        <input type="text" id="new-standard" placeholder="Standard"><br>
-        <input type="text" id="new-bridge" placeholder="Bridge Notes"><br>
-        <input type="text" id="new-composer" placeholder="Composer"><br>
-        <input type="text" id="new-lyricist" placeholder="Lyricist"><br>
-        <input type="text" id="new-year" placeholder="Year"><br>
-        <input type="text" id="new-origin" placeholder="Origin"><br>
-        <input type="text" id="new-type" placeholder="Type"><br>
-        <input type="text" id="new-of-note" placeholder="Of Note"><br>
-        <button onclick="addStandard()">Add Standard</button>
-    </div>
+    <main>
+        <section id="word-input-container">
+            <h2>Add a New Word</h2>
+            <input type="text" id="new-word" placeholder="Word"><br>
+            <input type="text" id="new-definition" placeholder="Definition"><br>
+            <input type="text" id="new-example" placeholder="Example"><br>
+            <button onclick="addWord()">Add Word</button>
+        </section>
+
+        <section id="standard-input-container">
+            <h2>Add a New Standard</h2>
+            <input type="text" id="new-standard" placeholder="Standard"><br>
+            <input type="text" id="new-bridge" placeholder="Bridge Notes"><br>
+            <input type="text" id="new-composer" placeholder="Composer"><br>
+            <input type="text" id="new-lyricist" placeholder="Lyricist"><br>
+            <input type="text" id="new-year" placeholder="Year"><br>
+            <input type="text" id="new-origin" placeholder="Origin"><br>
+            <input type="text" id="new-type" placeholder="Type"><br>
+            <input type="text" id="new-of-note" placeholder="Of Note"><br>
+            <button onclick="addStandard()">Add Standard</button>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
