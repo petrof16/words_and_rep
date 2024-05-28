@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-align: center;
 }
 
 nav {
@@ -49,16 +50,33 @@ main {
     padding: 20px;
 }
 
+#content-container, #input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 section {
     border: 1px solid #ccc;
     padding: 20px;
     margin: 20px 0;
     border-radius: 5px;
     background-color: #f9f9f9;
+    width: 60%;
 }
 
 h2 {
     color: #0046ad;
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 2.2em;
+    margin: 10px 0;
+}
+
+p {
+    font-size: 1.2em;
 }
 
 button {
@@ -69,8 +87,18 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: #003380;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
 }

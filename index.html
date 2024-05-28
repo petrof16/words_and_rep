@@ -7,30 +7,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Words and Standards</h1>
     <nav>
-        <a href="index.html">Home</a> |
-        <a href="input.html">Input New Data</a>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Words and Standards</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="input.html">Input New Data</a>
+            </div>
+        </div>
     </nav>
 
-    <div id="word-container">
-        <h2 id="word-title">Word of the Day</h2>
-        <p id="word"></p>
-        <p id="definition"></p>
-        <p id="example"></p>
-    </div>
+    <header class="header">
+        <h1>Word and Standard of the Day</h1>
+    </header>
 
-    <div id="standard-container">
-        <h2 id="standard-title">Standard of the Day</h2>
-        <p id="standard"></p>
-        <p id="bridge"></p>
-        <p id="composer"></p>
-        <p id="lyricist"></p>
-        <p id="year"></p>
-        <p id="origin"></p>
-        <p id="type"></p>
-        <p id="of-note"></p>
-    </div>
+    <main>
+        <div id="content-container">
+            <section id="word-container">
+                <h2>Word of the Day</h2>
+                <h3 id="word"></h3>
+                <p><strong>Definition:</strong> <span id="definition"></span></p>
+                <p><strong>Example:</strong> <span id="example"></span></p>
+            </section>
+
+            <section id="standard-container">
+                <h2>Standard of the Day</h2>
+                <h3 id="standard"></h3>
+                <p><strong>Bridge Notes:</strong> <span id="bridge"></span></p>
+                <p><strong>Composer:</strong> <span id="composer"></span></p>
+                <p><strong>Lyricist:</strong> <span id="lyricist"></span></p>
+                <p><strong>Year:</strong> <span id="year"></span></p>
+                <p><strong>Origin:</strong> <span id="origin"></span></p>
+                <p><strong>Type:</strong> <span id="type"></span></p>
+                <p><strong>Of Note:</strong> <span id="of-note"></span></p>
+            </section>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>

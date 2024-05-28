@@ -1,4 +1,3 @@
-// Sample data
 const wordsData = [
     {"word": "cognitive", "definition": "the mental action or process of acquiring knowledge and understanding through thought, experience, and the senses.", "example": "Cognitive processes are essential for learning."},
     {"word": "meretricious", "definition": "apparently attractive but having in reality no value or integrity.", "example": "The souvenirs were meretricious, appealing to tourists but lacking authenticity."},
