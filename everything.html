@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Words and Standards</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="input.html">Input New Data</a>
+                <a href="search.html">Search</a>
+                <a href="calendar.html">Calendar</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <h1>Search</h1>
+    </header>
+
+    <main>
+        <div id="search-container">
+            <section id="word-search-container">
+                <h2>Search Words</h2>
+                <input type="text" id="search-word" placeholder="Search for a word" onkeyup="searchWord()"><br>
+                <div id="word-results"></div>
+            </section>
+
+            <section id="standard-search-container">
+                <h2>Search Standards</h2>
+                <input type="text" id="search-standard" placeholder="Search for a standard" onkeyup="searchStandard()"><br>
+                <div id="standard-results"></div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
