@@ -14,54 +14,71 @@
                 <a href="index.html">Home</a>
                 <a href="input.html">Input New Data</a>
                 <a href="search.html">Search</a>
+                <a href="everything.html">Everything</a>
                 <a href="calendar.html">Calendar</a>
             </div>
         </div>
     </nav>
 
     <header class="header">
-        <h1>Input New Word and Standard</h1>
+        <h1>Input New Data</h1>
     </header>
 
     <main>
         <div id="input-container">
-            <section id="word-input-container">
-                <h2>Add a New Word</h2>
-                <input type="text" id="new-word" placeholder="Word"><br>
-                <input type="text" id="new-definition" placeholder="Definition"><br>
-                <input type="text" id="new-example" placeholder="Example"><br>
-                <button onclick="addWord()">Add Word</button>
-            </section>
+            <h2>Add New Word</h2>
+            <form id="word-form">
+                <input type="text" id="new-word" placeholder="Word" required><br>
+                <textarea id="new-definition" placeholder="Definition" required></textarea><br>
+                <input type="text" id="new-example" placeholder="Example" required><br>
+                <button type="submit">Add Word</button>
+            </form>
+            <p id="word-confirmation" class="confirmation-message"></p>
 
-            <section id="batch-word-input-container">
-                <h2>Batch Upload Words</h2>
-                <input type="file" id="word-file-upload" accept=".csv"><br>
-                <button onclick="batchUploadWords()">Upload Words</button>
-                <p>Instructions: Upload a CSV file with columns: word, definition, example.</p>
-            </section>
-
-            <section id="standard-input-container">
-                <h2>Add a New Standard</h2>
-                <input type="text" id="new-standard" placeholder="Standard"><br>
-                <input type="text" id="new-bridge" placeholder="Bridge Notes"><br>
-                <input type="text" id="new-composer" placeholder="Composer"><br>
-                <input type="text" id="new-lyricist" placeholder="Lyricist"><br>
+            <h2>Add New Standard</h2>
+            <form id="standard-form">
+                <input type="text" id="new-standard" placeholder="Standard" required><br>
+                <input type="text" id="new-composer" placeholder="Composer" required><br>
+                <input type="text" id="new-lyricist" placeholder="Lyricist" required><br>
                 <input type="text" id="new-year" placeholder="Year"><br>
                 <input type="text" id="new-origin" placeholder="Origin"><br>
                 <input type="text" id="new-type" placeholder="Type"><br>
-                <input type="text" id="new-of-note" placeholder="Of Note"><br>
-                <button onclick="addStandard()">Add Standard</button>
-            </section>
-
-            <section id="batch-standard-input-container">
-                <h2>Batch Upload Standards</h2>
-                <input type="file" id="standard-file-upload" accept=".csv"><br>
-                <button onclick="batchUploadStandards()">Upload Standards</button>
-                <p>Instructions: Upload a CSV file with columns: Standard, Bridge, Composer, Lyricist, Year, Origin, Type, Of Note.</p>
-            </section>
+                <textarea id="new-notes" placeholder="Notes"></textarea><br>
+                <button type="submit">Add Standard</button>
+            </form>
+            <p id="standard-confirmation" class="confirmation-message"></p>
         </div>
     </main>
 
     <script src="script.js"></script>
+    <script>
+        document.getElementById('word-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const newWord = document.getElementById('new-word').value;
+            const newDefinition = document.getElementById('new-definition').value;
+            const newExample = document.getElementById('new-example').value;
+
+            wordsData.push({ word: newWord, definition: newDefinition, example: newExample });
+
+            document.getElementById('word-confirmation').textContent = 'New word added successfully!';
+            document.getElementById('word-form').reset();
+        });
+
+        document.getElementById('standard-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const newStandard = document.getElementById('new-standard').value;
+            const newComposer = document.getElementById('new-composer').value;
+            const newLyricist = document.getElementById('new-lyricist').value;
+            const newYear = document.getElementById('new-year').value;
+            const newOrigin = document.getElementById('new-origin').value;
+            const newType = document.getElementById('new-type').value;
+            const newNotes = document.getElementById('new-notes').value;
+
+            standardData.push({ Standard: newStandard, Composer: newComposer, Lyricist: newLyricist, Year: newYear, Origin: newOrigin, Type: newType, Bridge: { notes: newNotes } });
+
+            document.getElementById('standard-confirmation').textContent = 'New standard added successfully!';
+            document.getElementById('standard-form').reset();
+        });
+    </script>
 </body>
 </html>

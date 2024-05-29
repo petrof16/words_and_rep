@@ -14,6 +14,7 @@
                 <a href="index.html">Home</a>
                 <a href="input.html">Input New Data</a>
                 <a href="search.html">Search</a>
+                <a href="everything.html">Everything</a>
                 <a href="calendar.html">Calendar</a>
             </div>
         </div>
@@ -25,38 +26,71 @@
 
     <main>
         <div id="calendar-options">
-            <section>
-                <h2>Export Calendar</h2>
-                <button onclick="exportCalendar()">Export Calendar with Reminders</button>
-            </section>
-
-            <section>
-                <h2>Drag and Drop</h2>
-                <div id="word-standard-list">
-                    <h3>Words</h3>
-                    <ul id="word-list">
-                        <!-- Words will be dynamically added here -->
-                    </ul>
-
-                    <h3>Standards</h3>
-                    <ul id="standard-list">
-                        <!-- Standards will be dynamically added here -->
-                    </ul>
-                </div>
-                <div id="calendar">
-                    <!-- Calendar will be dynamically generated here -->
-                </div>
-            </section>
-
-            <section>
-                <h2>Random Assignment</h2>
-                <label for="total-days">Total days:</label>
-                <input type="number" id="total-days" min="1" max="365" value="30">
-                <button onclick="randomAssign()">Randomly Assign Words and Standards</button>
-            </section>
+            <h2>Calendar Options</h2>
+            <button onclick="exportCalendar()">Export Calendar</button>
+            <button onclick="initDragAndDrop()">Drag and Drop</button>
+            <button onclick="assignRandomWords()">Assign Random Words</button>
+            <p>Drag words/standards to the calendar below:</p>
+            <div id="word-list" class="drag-list">
+                <h3>Words</h3>
+                <ul id="word-drag-list"></ul>
+            </div>
+            <div id="standard-list" class="drag-list">
+                <h3>Standards</h3>
+                <ul id="standard-drag-list"></ul>
+            </div>
         </div>
+
+        <div id="calendar"></div>
     </main>
 
     <script src="script.js"></script>
+    <script>
+        function exportCalendar() {
+            // Export calendar implementation
+        }
+
+        function initDragAndDrop() {
+            // Drag and drop implementation
+        }
+
+        function assignRandomWords() {
+            // Random word assignment implementation
+        }
+
+        function generateCalendar() {
+            // Calendar generation implementation
+        }
+
+        function populateLists() {
+            const wordDragList = document.getElementById('word-drag-list');
+            const standardDragList = document.getElementById('standard-drag-list');
+
+            wordsData.forEach(word => {
+                const li = document.createElement('li');
+                li.textContent = word.word;
+                li.draggable = true;
+                li.ondragstart = (event) => {
+                    event.dataTransfer.setData('text/plain', JSON.stringify({ type: 'word', data: word }));
+                };
+                wordDragList.appendChild(li);
+            });
+
+            standardData.forEach(standard => {
+                const li = document.createElement('li');
+                li.textContent = standard.Standard;
+                li.draggable = true;
+                li.ondragstart = (event) => {
+                    event.dataTransfer.setData('text/plain', JSON.stringify({ type: 'standard', data: standard }));
+                };
+                standardDragList.appendChild(li);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            generateCalendar();
+            populateLists();
+        });
+    </script>
 </body>
 </html>

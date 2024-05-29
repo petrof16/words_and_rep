@@ -4,7 +4,7 @@ const wordsData = [
 ];
 
 const standardData = [
-    { Standard: "All The Things You Are", Bridge: { notes: "" }, Composer: "Jerome Kern", Lyrisist: "Oscar Hammerstein", Year: "", Origin: "", Type: "", 'Of Note': "" },
+    { Standard: "All The Things You Are", Bridge: { notes: "" }, Composer: "Jerome Kern", Lyricist: "Oscar Hammerstein", Year: "", Origin: "", Type: "", 'Of Note': "" },
     // add other standards here
 ];
 
