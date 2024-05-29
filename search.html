@@ -14,6 +14,7 @@
                 <a href="index.html">Home</a>
                 <a href="input.html">Input New Data</a>
                 <a href="search.html">Search</a>
+                <a href="everything.html">Everything</a>
                 <a href="calendar.html">Calendar</a>
             </div>
         </div>
@@ -27,18 +28,57 @@
         <div id="search-container">
             <section id="word-search-container">
                 <h2>Search Words</h2>
-                <input type="text" id="search-word" placeholder="Search for a word" onkeyup="searchWord()"><br>
-                <div id="word-results"></div>
+                <input type="text" id="search-word" placeholder="Search for a word" oninput="showWordDropdown()"><br>
+                <ul id="word-dropdown" class="dropdown"></ul>
             </section>
 
             <section id="standard-search-container">
                 <h2>Search Standards</h2>
-                <input type="text" id="search-standard" placeholder="Search for a standard" onkeyup="searchStandard()"><br>
-                <div id="standard-results"></div>
+                <input type="text" id="search-standard" placeholder="Search for a standard" oninput="showStandardDropdown()"><br>
+                <ul id="standard-dropdown" class="dropdown"></ul>
             </section>
         </div>
     </main>
 
     <script src="script.js"></script>
+    <script>
+        function showWordDropdown() {
+            const input = document.getElementById('search-word').value.toLowerCase();
+            const dropdown = document.getElementById('word-dropdown');
+            dropdown.innerHTML = '';
+
+            if (input) {
+                const matches = wordsData.filter(word => word.word.toLowerCase().includes(input));
+                matches.forEach(match => {
+                    const li = document.createElement('li');
+                    li.textContent = match.word;
+                    li.addEventListener('click', () => {
+                        document.getElementById('search-word').value = match.word;
+                        dropdown.innerHTML = '';
+                    });
+                    dropdown.appendChild(li);
+                });
+            }
+        }
+
+        function showStandardDropdown() {
+            const input = document.getElementById('search-standard').value.toLowerCase();
+            const dropdown = document.getElementById('standard-dropdown');
+            dropdown.innerHTML = '';
+
+            if (input) {
+                const matches = standardData.filter(standard => standard.Standard.toLowerCase().includes(input));
+                matches.forEach(match => {
+                    const li = document.createElement('li');
+                    li.textContent = match.Standard;
+                    li.addEventListener('click', () => {
+                        document.getElementById('search-standard').value = match.Standard;
+                        dropdown.innerHTML = '';
+                    });
+                    dropdown.appendChild(li);
+                });
+            }
+        }
+    </script>
 </body>
 </html>

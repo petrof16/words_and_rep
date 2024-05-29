@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
+    <title>Everything</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,31 +14,48 @@
                 <a href="index.html">Home</a>
                 <a href="input.html">Input New Data</a>
                 <a href="search.html">Search</a>
+                <a href="everything.html">Everything</a>
                 <a href="calendar.html">Calendar</a>
             </div>
         </div>
     </nav>
 
     <header class="header">
-        <h1>Search</h1>
+        <h1>Everything</h1>
     </header>
 
     <main>
-        <div id="search-container">
-            <section id="word-search-container">
-                <h2>Search Words</h2>
-                <input type="text" id="search-word" placeholder="Search for a word" onkeyup="searchWord()"><br>
-                <div id="word-results"></div>
+        <div id="everything-container">
+            <section id="words-list">
+                <h2>Words</h2>
+                <ul id="words-ul"></ul>
             </section>
 
-            <section id="standard-search-container">
-                <h2>Search Standards</h2>
-                <input type="text" id="search-standard" placeholder="Search for a standard" onkeyup="searchStandard()"><br>
-                <div id="standard-results"></div>
+            <section id="standards-list">
+                <h2>Standards</h2>
+                <ul id="standards-ul"></ul>
             </section>
         </div>
     </main>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wordsUl = document.getElementById('words-ul');
+            const standardsUl = document.getElementById('standards-ul');
+
+            wordsData.forEach(word => {
+                const li = document.createElement('li');
+                li.textContent = `${word.word}: ${word.definition} (Example: ${word.example})`;
+                wordsUl.appendChild(li);
+            });
+
+            standardData.forEach(standard => {
+                const li = document.createElement('li');
+                li.textContent = `${standard.Standard} by ${standard.Composer}`;
+                standardsUl.appendChild(li);
+            });
+        });
+    </script>
 </body>
 </html>
