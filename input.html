@@ -33,9 +33,9 @@
 
             <section id="batch-word-input-container">
                 <h2>Batch Upload Words</h2>
-                <input type="file" id="word-file-upload" accept=".json"><br>
+                <input type="file" id="word-file-upload" accept=".csv"><br>
                 <button onclick="batchUploadWords()">Upload Words</button>
-                <p>Instructions: Upload a JSON file containing an array of word objects with properties: word, definition, and example.</p>
+                <p>Instructions: Upload a CSV file with columns: word, definition, example.</p>
             </section>
 
             <section id="standard-input-container">
@@ -53,9 +53,9 @@
 
             <section id="batch-standard-input-container">
                 <h2>Batch Upload Standards</h2>
-                <input type="file" id="standard-file-upload" accept=".json"><br>
+                <input type="file" id="standard-file-upload" accept=".csv"><br>
                 <button onclick="batchUploadStandards()">Upload Standards</button>
-                <p>Instructions: Upload a JSON file containing an array of standard objects with properties: Standard, Bridge, Composer, Lyrisist, Year, Origin, Type, and Of Note.</p>
+                <p>Instructions: Upload a CSV file with columns: Standard, Bridge, Composer, Lyricist, Year, Origin, Type, Of Note.</p>
             </section>
         </div>
     </main>
