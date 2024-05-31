@@ -19,43 +19,18 @@
             </div>
         </div>
     </nav>
-
     <header class="header">
         <h1>Everything</h1>
     </header>
-
     <main>
         <div id="everything-container">
-            <section id="words-list">
-                <h2>Words</h2>
-                <ul id="words-ul"></ul>
-            </section>
+            <h2>All Words</h2>
+            <ul id="words-ul"></ul>
 
-            <section id="standards-list">
-                <h2>Standards</h2>
-                <ul id="standards-ul"></ul>
-            </section>
+            <h2>All Standards</h2>
+            <ul id="standards-ul"></ul>
         </div>
     </main>
-
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const wordsUl = document.getElementById('words-ul');
-            const standardsUl = document.getElementById('standards-ul');
-
-            wordsData.forEach(word => {
-                const li = document.createElement('li');
-                li.textContent = `${word.word}: ${word.definition} (Example: ${word.example})`;
-                wordsUl.appendChild(li);
-            });
-
-            standardData.forEach(standard => {
-                const li = document.createElement('li');
-                li.textContent = `${standard.Standard} by ${standard.Composer}`;
-                standardsUl.appendChild(li);
-            });
-        });
-    </script>
 </body>
 </html>
